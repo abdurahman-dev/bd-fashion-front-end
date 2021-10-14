@@ -4,8 +4,7 @@ import Slider from 'react-slick';
 
 import ProductCard from '../ProductCard';
 
-const ProductSlider = ({ groupTitle, products,slidesToShow }) => {
-  
+const ProductSlider = ({ groupTitle, products, slidesToShow}) => {
   const settings = {
     dots: false,
     infinite: true,
@@ -16,11 +15,12 @@ const ProductSlider = ({ groupTitle, products,slidesToShow }) => {
     slidesToScroll: 1,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
+    // slidesPerRow: row && 2,
     responsive: [
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: slidesToShow-1,
+          slidesToShow: slidesToShow - 1,
           slidesToScroll: 1,
           infinite: true,
         },
@@ -41,16 +41,16 @@ const ProductSlider = ({ groupTitle, products,slidesToShow }) => {
       },
     ],
   };
-
-  console.log(products);
   return (
     <div className="h-auto">
-      <div className="h-14 flex items-center  text-black px-1">
-        <div>
-          <h4 className="font-bold text-4xl">{groupTitle}</h4>
+      {groupTitle && (
+        <div className="h-14 flex items-center  text-black px-1">
+          <div>
+            <h4 className="font-bold text-4xl">{groupTitle}</h4>
+          </div>
         </div>
-      </div>
-      <div className="" style={{width:'94%',margin:'0 auto'}}>
+      )}
+      <div className="" style={{ width: '94%', margin: '0 auto' }}>
         <Slider {...settings}>
           {products.map((product, i) => (
             <ProductCard product={product} key={i}/>
@@ -77,8 +77,8 @@ function SampleNextArrow(props) {
         // eslint-disable-next-line no-dupe-keys
         display: 'flex',
         alignItems: 'center',
-        justifyContent:'end',
-        color:'black'
+        justifyContent: 'end',
+        color: 'black',
       }}
       onClick={onClick}
     />

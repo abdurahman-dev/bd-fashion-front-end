@@ -4,19 +4,19 @@ import ReactStars from 'react-rating-stars-component';
 import './style.css';
 import AddToCardButton from '../AddToCardButton';
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product,height }) => {
   const firstExample = {
     size: 30,
     value: product.rating,
     edit: false,
   };
   return (
-    <div className="m-4">
+    <div className={`m-4`}>
         <div className="w-full rounded-md cardMain">
                         <img
                           src={product.image[0].Img}
                           alt=""
-                          className=" w-full" 
+                          className={`w-full`}
                         />
                         <div className="hoverButton flex justify-center w-full">
                           <div className="flex justify-between items-center">

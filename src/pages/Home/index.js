@@ -7,6 +7,8 @@ import products from '../../untils/Data/products';
 import NewProducts from '../../Components/NewProducts';
 import BestSellers from '../../Components/BestSeller';
 import MenuBanners from './HomeMenuBanners';
+import FeaturedProducts from '../../Components/FeaturedProducts';
+import Subscribe from '../../Components/Subscribe';
 
 const Home = () => {
 
@@ -21,6 +23,8 @@ console.log(ToDaysProduct);
     <BestSellers/>
     <MenuBanners/>
       {ToDaysProduct.length > 0 &&  <NewProducts products={ToDaysProduct}/>}
+      <FeaturedProducts/>
+      <Subscribe/>
     </Layout>
   );
 };
