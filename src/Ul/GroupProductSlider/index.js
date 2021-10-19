@@ -12,16 +12,13 @@ const ProductSlider = ({ groupTitle, products, slidesToShow}) => {
     speed: 500,
     arrows: true,
     slidesToShow: slidesToShow,
-    slidesToScroll: 1,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
-    // slidesPerRow: row && 2,
+    slidesToScroll: 2,
     responsive: [
       {
         breakpoint: 1024,
         settings: {
           slidesToShow: slidesToShow - 1,
-          slidesToScroll: 1,
+          slidesToScroll: 2,
           infinite: true,
         },
       },
@@ -63,44 +60,4 @@ const ProductSlider = ({ groupTitle, products, slidesToShow}) => {
 
 export default ProductSlider;
 
-function SampleNextArrow(props) {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      className={className}
-      style={{
-        ...style,
-        display: 'block',
-        background: 'gray',
-        height: '50px',
-        width: '20px',
-        // eslint-disable-next-line no-dupe-keys
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'end',
-        color: 'black',
-      }}
-      onClick={onClick}
-    />
-  );
-}
 
-function SamplePrevArrow(props) {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      className={className}
-      style={{
-        ...style,
-        display: 'block',
-        background: 'gray',
-        height: '50px',
-        width: '20px',
-        // eslint-disable-next-line no-dupe-keys
-        display: 'flex',
-        alignItems: 'center',
-      }}
-      onClick={onClick}
-    />
-  );
-}

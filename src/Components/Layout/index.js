@@ -1,4 +1,7 @@
 import React from 'react';
+import Footer from '../Shared/Footer';
+import Navbar from '../Shared/Navbar';
+import Subscribe from '../Shared/Subscribe';
 
 const Layout = ({ pageTitle, children }) => {
   if(pageTitle){
@@ -9,8 +12,11 @@ const Layout = ({ pageTitle, children }) => {
  
   return (
     <div>
-      {children}
-      <footer>footer</footer>
+      <Navbar/>
+      <div  className='pt-20'> {children}</div>
+     
+      <Subscribe/>
+      <Footer/>
     </div>
   );
 };

@@ -9,7 +9,6 @@ const MainButton = ({ title, href }) => {
         {title ? title : 'button'}
         <span className='overLay'></span>
         </Link>
-    
     </div>
   );
 };

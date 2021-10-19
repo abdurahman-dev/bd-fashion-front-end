@@ -1,0 +1,37 @@
+.toggleSidebar{
+    margin-left: 20%;
+}
+.sidebar{
+    transition: 0.3s all ease-in-out;
+    width: 20%;
+    background-color: turquoise;
+    position: absolute;
+    -webkit-transition: 0.3s all ease-in-out;
+    -moz-transition: 0.3s all ease-in-out;
+    -ms-transition: 0.3s all ease-in-out;
+    -o-transition: 0.3s all ease-in-out;
+}
+@media (max-width:756px){
+    .toggleSidebar{
+        margin-left: 30%;
+    }
+    .sidebar{
+        width: 30%;
+        }
+}
+@media (max-width:500px){
+    .toggleSidebar{
+        margin-left: 50%;
+    }
+    .sidebar{
+        width: 50%;
+        }
+}
+@media (max-width:430px){
+    .toggleSidebar{
+        margin-left: 70%;
+    }
+    .sidebar{
+        width: 70%;
+        }
+}

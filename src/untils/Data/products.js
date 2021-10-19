@@ -1,21 +1,22 @@
 const products = [
   {
+    id:"abc_010",
     name: 'C Eco Aware Organic Cotton top',
-    slug: 'c-eco-aware-organic-cotton-top',
+    slug: 'c-eco-aware-organic-cotton-top-ab',
     price: 20,
     category: '002', //id of category
     rating: 5,
     stock: '5',
-    discount: '',
+    discount: '0',
     subCategory: 'Cloth', //id of a category but it will be subcategory
     reviews: [],
     brand: 'Nike',
-    tags:{
-      onSale:true,
-      new:true,
-      flashSale:false,
-      recommended:false,
-      trending:true,
+    tags: {
+      onSale: true,
+      new: true,
+      flashSale: false,
+      recommended: false,
+      trending: true,
     },
     image: [
       {
@@ -25,25 +26,27 @@ const products = [
         Img: 'https://cdn.shopify.com/s/files/1/0256/4594/0810/products/2_fa31bdcb-129f-4c46-9c5c-566971712942_360x.jpg?v=1615530706',
       },
     ],
+    description:
+      'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quod ullam veritatis perferendis, dolore expedita quia molestiae laborum velit minus impedit.',
     uploadDate: new Date(),
   },
-  {
+  {id:"abc_011",
     name: 'Z Classic one-breasted jacket',
-    slug: 'z-classic-one-breasted-jacket',
+    slug: 'z-classic-one-breasted-jacket-ac',
     price: 10,
     category: '003',
     rating: 2,
     stock: '0',
-    discount: '10%',
+    discount: '10',
     subCategory: 'Cloth',
     reviews: [],
     brand: 'Boom',
-    tags:{
-      onSale:false,
-      new:true,
-      flashSale:false,
-      recommended:false,
-      trending:false,
+    tags: {
+      onSale: false,
+      new: true,
+      flashSale: false,
+      recommended: false,
+      trending: false,
     },
     image: [
       {
@@ -53,25 +56,27 @@ const products = [
         Img: 'https://cdn.shopify.com/s/files/1/0256/4594/0810/products/2_41c2342f-698a-4259-8844-cf3d62df8866_360x.jpg?v=1614067794',
       },
     ],
+    description:
+      'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quod ullam veritatis perferendis, dolore expedita quia molestiae laborum velit minus impedit.',
     uploadDate: new Date(),
   },
-  {
+  {id:"abc_012",
     name: 'Z Eco Aware Organic Cotton top Model-GH',
-    slug: 'z-e-eco-aware-organic-cotton-top',
+    slug: 'z-e-eco-aware-organic-cotton-ad',
     price: 25,
     category: '002',
     rating: 5,
     stock: '5',
-    discount: '',
+    discount: '5',
     subCategory: 'Cloth',
     reviews: [],
     brand: 'Nike',
-    tags:{
-      onSale:false,
-      new:false,
-      flashSale:true,
-      recommended:false,
-      trending:true,
+    tags: {
+      onSale: false,
+      new: false,
+      flashSale: true,
+      recommended: false,
+      trending: true,
     },
     image: [
       {
@@ -81,25 +86,27 @@ const products = [
         Img: 'https://cdn.shopify.com/s/files/1/0256/4594/0810/products/2_fa31bdcb-129f-4c46-9c5c-566971712942_360x.jpg?v=1615530706',
       },
     ],
+    description:
+      'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quod ullam veritatis perferendis, dolore expedita quia molestiae laborum velit minus impedit.',
     uploadDate: new Date(),
   },
-  {
+  {id:"abc_013",
     name: 'B Classic one-breasted jacket',
-    slug: 'b-classic-one-breasted-jacket',
+    slug: 'b-classic-one-breasted-jacket-af',
     price: 50,
     category: '001',
     rating: 4,
-    stock: '0',
-    discount: '10%',
+    stock: '5',
+    discount: '10',
     subCategory: 'Cloth',
     reviews: [],
     brand: 'Boom',
-    tags:{
-      onSale:true,
-      new:false,
-      flashSale:false,
-      recommended:false,
-      trending:false,
+    tags: {
+      onSale: true,
+      new: false,
+      flashSale: false,
+      recommended: false,
+      trending: false,
     },
     image: [
       {
@@ -109,25 +116,27 @@ const products = [
         Img: 'https://cdn.shopify.com/s/files/1/0256/4594/0810/products/2_41c2342f-698a-4259-8844-cf3d62df8866_360x.jpg?v=1614067794',
       },
     ],
+    description:
+      'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quod ullam veritatis perferendis, dolore expedita quia molestiae laborum velit minus impedit.',
     uploadDate: new Date(),
   },
-  {
+  {id:"abc_014",
     name: 'O Eco Aware Organic Cotton top Small-GH',
-    slug: 'o-eco-aware-organic-cotton-top',
+    slug: 'o-eco-aware-organic-cotton-top-ag',
     price: 15,
     category: '002',
     rating: 2.5,
     stock: '5',
-    discount: '',
+    discount: '50',
     subCategory: 'Cloth',
     reviews: [],
     brand: 'Nike',
-    tags:{
-      onSale:false,
-      new:true,
-      flashSale:false,
-      recommended:false,
-      trending:true,
+    tags: {
+      onSale: false,
+      new: true,
+      flashSale: false,
+      recommended: false,
+      trending: true,
     },
     image: [
       {
@@ -137,25 +146,27 @@ const products = [
         Img: 'https://cdn.shopify.com/s/files/1/0256/4594/0810/products/2_fa31bdcb-129f-4c46-9c5c-566971712942_360x.jpg?v=1615530706',
       },
     ],
+    description:
+      'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quod ullam veritatis perferendis, dolore expedita quia molestiae laborum velit minus impedit.',
     uploadDate: new Date(),
   },
-  {
+  {id:"abc_015",
     name: 'A Classic one-breasted jacket',
-    slug: 'a-classic-one-breasted-jacket',
+    slug: 'a-classic-one-breasted-jacket-ag',
     price: 30,
     category: '001',
     rating: 3,
     stock: '0',
-    discount: '10%',
+    discount: '10',
     subCategory: 'Cloth',
     reviews: [],
     brand: 'Boom',
-    tags:{
-      onSale:true,
-      new:true,
-      flashSale:false,
-      recommended:false,
-      trending:false,
+    tags: {
+      onSale: true,
+      new: true,
+      flashSale: false,
+      recommended: false,
+      trending: false,
     },
     image: [
       {
@@ -165,25 +176,27 @@ const products = [
         Img: 'https://cdn.shopify.com/s/files/1/0256/4594/0810/products/2_41c2342f-698a-4259-8844-cf3d62df8866_360x.jpg?v=1614067794',
       },
     ],
+    description:
+      'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quod ullam veritatis perferendis, dolore expedita quia molestiae laborum velit minus impedit.',
     uploadDate: new Date(),
   },
-  {
+  {id:"abc_016",
     name: 'K Eco Aware Organic Cotton top',
-    slug: 'k-eco-aware-organic-cotton-top',
+    slug: 'k-eco-aware-organic-cotton-top-ah',
     price: 5,
     category: '002',
     rating: 4,
     stock: '5',
-    discount: '',
+    discount: '10',
     subCategory: 'Cloth',
     reviews: [],
     brand: 'Nike',
-    tags:{
-      onSale:true,
-      new:false,
-      flashSale:false,
-      recommended:false,
-      trending:true,
+    tags: {
+      onSale: true,
+      new: false,
+      flashSale: false,
+      recommended: false,
+      trending: true,
     },
     image: [
       {
@@ -193,25 +206,27 @@ const products = [
         Img: 'https://cdn.shopify.com/s/files/1/0256/4594/0810/products/2_fa31bdcb-129f-4c46-9c5c-566971712942_360x.jpg?v=1615530706',
       },
     ],
+    description:
+      'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quod ullam veritatis perferendis, dolore expedita quia molestiae laborum velit minus impedit.',
     uploadDate: new Date(),
   },
-  {
+  {id:"abc_017",
     name: 'Nike Shoes For Mens',
-    slug: 'eco-aware-organic-cotton-top',
+    slug: 'eco-aware-organic-cotton-top-az',
     price: 15,
     category: '006',
     rating: 4,
     stock: '5',
-    discount: '',
+    discount: '90',
     subCategory: 'Cloth',
     reviews: [],
     brand: 'Nike',
-    tags:{
-      onSale:true,
-      new:true,
-      flashSale:false,
-      recommended:false,
-      trending:true,
+    tags: {
+      onSale: true,
+      new: true,
+      flashSale: false,
+      recommended: false,
+      trending: true,
     },
     image: [
       {
@@ -221,25 +236,27 @@ const products = [
         Img: 'https://cdn.shopify.com/s/files/1/0256/4594/0810/products/2_fa31bdcb-129f-4c46-9c5c-566971712942_360x.jpg?v=1615530706',
       },
     ],
+    description:
+      'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quod ullam veritatis perferendis, dolore expedita quia molestiae laborum velit minus impedit.',
     uploadDate: new Date(),
   },
-  {
+  {id:"abc_018",
     name: 'Nike Shoes For Mens',
-    slug: 'eco-aware-organic-cotton-top',
+    slug: 'eco-aware-organic-cotton-top-am',
     price: 15,
     category: '006',
     rating: 4,
     stock: '5',
-    discount: '',
+    discount: '2',
     subCategory: 'Cloth',
     reviews: [],
     brand: 'Nike',
-    tags:{
-      onSale:true,
-      new:true,
-      flashSale:false,
-      recommended:false,
-      trending:true,
+    tags: {
+      onSale: true,
+      new: true,
+      flashSale: false,
+      recommended: false,
+      trending: true,
     },
     image: [
       {
@@ -249,25 +266,27 @@ const products = [
         Img: 'https://cdn.shopify.com/s/files/1/0256/4594/0810/products/2_fa31bdcb-129f-4c46-9c5c-566971712942_360x.jpg?v=1615530706',
       },
     ],
+    description:
+      'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quod ullam veritatis perferendis, dolore expedita quia molestiae laborum velit minus impedit.',
     uploadDate: new Date(),
   },
-  {
+  {id:"abc_019",
     name: 'Nike Shoes For Mens',
-    slug: 'eco-aware-organic-cotton-top',
+    slug: 'eco-aware-organic-cotton-top-av',
     price: 15,
     category: '003',
     rating: 4,
     stock: '5',
-    discount: '',
+    discount: '5',
     subCategory: 'Cloth',
     reviews: [],
     brand: 'Nike',
-    tags:{
-      onSale:true,
-      new:true,
-      flashSale:false,
-      recommended:false,
-      trending:true,
+    tags: {
+      onSale: true,
+      new: true,
+      flashSale: false,
+      recommended: false,
+      trending: true,
     },
     image: [
       {
@@ -277,25 +296,27 @@ const products = [
         Img: 'https://cdn.shopify.com/s/files/1/0256/4594/0810/products/2_fa31bdcb-129f-4c46-9c5c-566971712942_360x.jpg?v=1615530706',
       },
     ],
+    description:
+      'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quod ullam veritatis perferendis, dolore expedita quia molestiae laborum velit minus impedit.',
     uploadDate: new Date(),
   },
-  {
+  {id:'abc_020',
     name: 'Nike Shoes For Mens',
-    slug: 'eco-aware-organic-cotton-top',
+    slug: 'eco-aware-organic-cotton-top-ao',
     price: 15,
     category: '003',
     rating: 4,
     stock: '5',
-    discount: '',
+    discount: '40',
     subCategory: 'Cloth',
     reviews: [],
     brand: 'Nike',
-    tags:{
-      onSale:true,
-      new:true,
-      flashSale:false,
-      recommended:false,
-      trending:true,
+    tags: {
+      onSale: true,
+      new: true,
+      flashSale: false,
+      recommended: false,
+      trending: true,
     },
     image: [
       {
@@ -305,25 +326,27 @@ const products = [
         Img: 'https://cdn.shopify.com/s/files/1/0256/4594/0810/products/2_fa31bdcb-129f-4c46-9c5c-566971712942_360x.jpg?v=1615530706',
       },
     ],
+    description:
+      'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quod ullam veritatis perferendis, dolore expedita quia molestiae laborum velit minus impedit.',
     uploadDate: new Date(),
   },
-  {
+  {id:'abc_0121',
     name: 'Nike Shoes For Mens',
-    slug: 'eco-aware-organic-cotton-top',
+    slug: 'eco-aware-organic-cotton-top-at',
     price: 15,
     category: '003',
     rating: 4,
     stock: '5',
-    discount: '',
+    discount: '0',
     subCategory: 'Cloth',
     reviews: [],
     brand: 'Nike',
-    tags:{
-      onSale:true,
-      new:true,
-      flashSale:false,
-      recommended:false,
-      trending:true,
+    tags: {
+      onSale: true,
+      new: true,
+      flashSale: false,
+      recommended: false,
+      trending: true,
     },
     image: [
       {
@@ -333,6 +356,8 @@ const products = [
         Img: 'https://cdn.shopify.com/s/files/1/0256/4594/0810/products/2_fa31bdcb-129f-4c46-9c5c-566971712942_360x.jpg?v=1615530706',
       },
     ],
+    description:
+      'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quod ullam veritatis perferendis, dolore expedita quia molestiae laborum velit minus impedit.',
     uploadDate: new Date(),
   },
 ];

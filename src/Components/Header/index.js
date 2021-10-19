@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 import mainBanners from '../../untils/Data/banners';
 
@@ -47,8 +48,8 @@ const Header = () => {
                 {item.title}
               </h2>
               <p>{item.description}</p>
-              <button
-                to="/"
+              <Link
+                to="/login"
                 style={{
                   backgroundColor: 'gray',
                   padding: '7px 35px',
@@ -56,7 +57,7 @@ const Header = () => {
                 }}
               >
                 {item.buttonTitle}
-              </button>
+              </Link>
             </div>
           </div>
           <div className="flex-1"></div>

@@ -8,14 +8,12 @@ import NewProducts from '../../Components/NewProducts';
 import BestSellers from '../../Components/BestSeller';
 import MenuBanners from './HomeMenuBanners';
 import FeaturedProducts from '../../Components/FeaturedProducts';
-import Subscribe from '../../Components/Subscribe';
+
 
 const Home = () => {
-
   const ToDaysProduct = products.filter(
     (item, i) => item.tags.new === true
   );
-console.log(ToDaysProduct);
   return (
     <Layout pageTitle="BD Fashion">
       <Header />
@@ -24,7 +22,6 @@ console.log(ToDaysProduct);
     <MenuBanners/>
       {ToDaysProduct.length > 0 &&  <NewProducts products={ToDaysProduct}/>}
       <FeaturedProducts/>
-      <Subscribe/>
     </Layout>
   );
 };

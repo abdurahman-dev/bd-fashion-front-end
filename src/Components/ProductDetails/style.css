@@ -1,0 +1,11 @@
+.slick-dots li {
+  width: 50px !important;
+  bottom: -10px;
+}
+.img-height{
+  width: 94%;
+  height: 80vh !important;
+}
+.slick-next:before, .slick-prev:before{
+  color: black;
+}

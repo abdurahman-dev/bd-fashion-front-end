@@ -1,5 +1,6 @@
 import React from 'react';
 import Layout from '../../Components/Layout';
+import Subscribe from '../../Components/Shared/Subscribe';
 import CollectionsGrid from './CollectionsGrid';
 const AllCollection = () => {
     return (

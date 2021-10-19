@@ -23,7 +23,7 @@ console.log();
       <div className="container  mx-auto grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 pt-5">
         {collection.map((item, i) => (
          <div key={i} className='pt-5' style={{cursor:'pointer'}}>
-         <Link to={`/product/${item.id}`}>
+         <Link to={`/category/${item.id}`}>
            <div>
              <div className="bg-gray-300 p-5">
                <img

@@ -1,0 +1,13 @@
+.navbar {
+  position: fixed;
+  left: 0;
+  width: 100%;
+  z-index: 20;
+}
+.bgNotSticky {
+  background-color: transparent;
+}
+.bgSticky {
+  background-color: #99CAF5;
+  box-shadow: 3px 3px 5px 6px rgba(0, 0, 0, 0.171);
+}

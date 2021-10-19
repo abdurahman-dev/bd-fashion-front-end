@@ -14,11 +14,11 @@ const SubHeader = () => {
           You’ll always be in fashion with our collection of clothing
         </p>
         <p className="mt-8 no-underline hover:underline cursor-pointer">
-        <Link to='/Collections' >All Collections</Link>
+        <Link to='/collections' >All Collections</Link>
         </p>
       </div>
       {subHeaderBanners.map((item, i) => (
-        <Link to={`/product/${item.id}`}>
+        <Link to={`/category/${item.id}`}>
           <div className="cursor-pointer">
             <img
               src={item.image}

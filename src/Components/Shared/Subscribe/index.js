@@ -27,11 +27,11 @@ const Subscribe = () => {
       }
   }
   return (
-    <div className="py-12 bg-gray-300 ">
+    <div className="py-12 bg-gray-200 ">
       <div className="container flex justify-center text-center items-center h-full mx-auto">
         <div>
           <h5 className='text-black text-2xl font-medium'>SUBSCRIBE TO OUR NEWSLETTER</h5>
-          <p className='text-black text-medium font-normal py-1'>Get the latest updates on new products and upcoming sales</p>
+          <p className='text-black text-medium font-normal py-2'>Get the latest updates on new products and upcoming sales</p>
 
           {emptyEmail && <p className="text-red-700"> Enter Your Email</p>}
           {validEmail === false && (
