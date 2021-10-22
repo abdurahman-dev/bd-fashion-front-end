@@ -6,8 +6,6 @@ import AddToCardButton from '../AddToCardButton';
 import { storeProduct } from '../../untils/Cart/index';
 
 const ProductCard = ({ product, height }) => {
-  const [cart, setCart] = useState([]);
-
   const firstExample = {
     size: 30,
     value: product.rating,
@@ -15,29 +13,46 @@ const ProductCard = ({ product, height }) => {
   };
 
   const handleProduct = (pd) => {
-    const pdInfo = {};
-    pdInfo[pd.id] = {
-      name: pd.name,
-    };
-    // storeProduct(pdInfo,pd.id);
+    storeProduct(pd.id, 1);
   };
 
+  const discountPrice = Number(product.discount) > 1 &&  (Number(product.discount) / 100) *
+  product.price ;
+   
+  console.log(discountPrice);
   return (
     <div className="m-4">
       <Link to={`/product/${product.slug}`}>
         <div className="w-full rounded-md cardMain">
           <img src={product.image[0].Img} alt="" className={`w-full`} />
+          {product.stock == 0 && (
+            <div className="bg-red-600 text-white rounded-r absolute text-center left-0 top-2  w-20 ">
+              Stock Out
+            </div>
+          )}
+          {product.tags.new == true && (
+            <div
+              className={`bg-black text-white rounded-r absolute text-center left-0 ${
+                product.stock == 0 ? 'top-10' : 'top-2'
+              } w-20 `}
+            >
+              New
+            </div>
+          )}
+          {product.discount > 0 && (
+            <div className="bg-green-600 text-white rounded-l absolute text-center right-0 top-0 w-20 ">
+              {product.discount}%
+            </div>
+          )}
           <div className="hoverButton flex justify-center w-full">
             <div className="flex justify-between items-center">
               <AddToCardButton addToCard={false} quickView={true} />
-              {product.stock >= 1 ? (
+              {product.stock >= 1 && (
                 <AddToCardButton
                   addToCard={true}
                   quickView={false}
                   onClick={() => handleProduct(product)}
                 />
-              ) : (
-                <p className="text-red-700 bg-white py-1 px-2">Stock Out</p>
               )}
             </div>
           </div>
@@ -54,7 +69,11 @@ const ProductCard = ({ product, height }) => {
               </a>
             </h3>
           </div>
-          <p className="text-sm  text-gray-900">Price: $ {product.price}</p>
+          <span className="text-sm  text-gray-900">
+            Price: ${' '}
+            {discountPrice ? discountPrice : product.price}
+          </span>{' '}
+          <span className='text-red-700 line-through'>{discountPrice &&  `from  $${product.price}` }</span>
         </div>
       </Link>
     </div>

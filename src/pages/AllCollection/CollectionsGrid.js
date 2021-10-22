@@ -9,7 +9,6 @@ const CollectionsGrid = () => {
   const totalProduct=(catId)=>{
     return products.filter((item,i)=>item.category == catId)
   }
-console.log();
   return (
     <div className="py-12">
       {/* page Title */}
@@ -20,12 +19,12 @@ console.log();
       </div>
       {/* grid */}
       
-      <div className="container  mx-auto grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 pt-5">
+      <div className="container  mx-auto grid gap-4  grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 pt-5">
         {collection.map((item, i) => (
-         <div key={i} className='pt-5' style={{cursor:'pointer'}}>
+         <div key={i} className='pt-5 cursor-pointer '>
          <Link to={`/category/${item.id}`}>
            <div>
-             <div className="bg-gray-300 p-5">
+             <div className="bg-gray-300 p-5 hover:shadow-2xl transition duration-300 ease-in-out">
                <img
                  src={item.image}
                  alt=""

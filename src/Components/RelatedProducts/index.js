@@ -8,7 +8,7 @@ const RelatedProducts = ({ catId }) => {
     <div className="py-1">
       <div className="container mx-auto">
         <div className="text-black text-4xl font-bold">Related Products</div>
-        <ProductSlider products={ products} slidesToShow={5} />
+        <ProductSlider products={ products} slidesToShow={4} />
       </div>
     </div>
   );

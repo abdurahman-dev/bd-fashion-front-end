@@ -51,7 +51,7 @@ const Subscribe = () => {
               }`}
               onClick={emailHandle }
             >
-              button
+        
             </button>
           </div>
         </div>

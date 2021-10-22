@@ -11,8 +11,15 @@ const ProductsShow = () => {
   const [title, setTitle] = useState('');
   const [product, setProduct] = useState(null);
   const [gridCol, setGridCol] = useState(4);
+  const [brand, setBrand] = useState([]);
 
+  const FindBrand = () => {
+    let brands = [];
+    products.forEach((item, i) => (brands[i] = item.brand));
+    return [...new Set(brands)];
+  };
   useEffect(() => {
+    setBrand(FindBrand());
     const categories = category.find((item, i) => item.id === findCategory);
     const product = products.filter((item) => item.category === findCategory);
     setTitle(categories.categoryTitle);
@@ -30,14 +37,8 @@ const ProductsShow = () => {
     }
   }, [findCategory]);
 
-  const handleClick = (count) => {
-    setGridCol(count);
-  };
-
   const handleFeatureChange = (e) => {
-    const catProducts = products.filter(
-      (item) => item.category === findCategory
-    );
+    const catProducts =  products.filter((item) => item.category === findCategory)
     if (e === 'default') {
       setProduct(catProducts);
       if (catProducts.length <= '2') {
@@ -70,10 +71,10 @@ const ProductsShow = () => {
       }
     } else {
       const pSlug = [];
-      let pd = catProducts.forEach((item, i) => (pSlug[i] = item.slug));
+      catProducts.forEach((item, i) => (pSlug[i] = item.slug));
       pSlug.sort();
       const stPd = [];
-      const p = pSlug.forEach(
+      pSlug.forEach(
         (item, i) => (stPd[i] = catProducts.find((pd, i) => pd.slug === item))
       );
       // ascending
@@ -134,12 +135,37 @@ const ProductsShow = () => {
       }
     }
   };
+
+  const handleClick = (count) => {
+    setGridCol(count);
+  };
+
+
   return (
-    <div className="container mx-auto bg-gray-400 py-12">
+    <div className="container mx-auto bg-gray-200 py-12">
       <div className="flex flex-col md:flex-row">
-        <div className="flex-initial order-2 md:order-1 w-5/5 md:w-1/5 bg-red-400">
-          side bar
-          <Link to="/">go Home</Link>
+        <div className="flex-initial border-2 border-white order-2 md:order-1 w-5/5 md:w-1/5 ">
+          <div className="pt-4 pl-4">
+            <h1> FILTER BY</h1>
+            <div>
+              <h4 className="text-lg font-medium"> Categories</h4>
+              <ul>
+                {category.map((item, i) => {
+                  return (
+                    <Link
+                      key={i}
+                      to={`/category/${item.id}`}
+                     
+                    >
+                      <li className="my-1 cursor-pointer hover:text-blue-600">
+                        {item.categoryTitle}
+                      </li>
+                    </Link>
+                  );
+                })}
+              </ul>
+            </div>
+          </div>
         </div>
         <div className="flex-initial order-1 md:order-2 bg-white w-5/5 md:w-4/5">
           <div className="text-center text-4xl font-bold my-2">{title}</div>

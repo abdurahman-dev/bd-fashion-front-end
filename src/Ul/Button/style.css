@@ -1,30 +1,47 @@
+.btnMain{
+  margin: 1rem 0;
+  width:250px;
+  height: 50px;
+}
+
 .mainButton {
+  padding: 10px 20px;
+  background-color: transparent;
   text-transform: capitalize;
-  border: 2px solid red;
+  border: 1px solid #99CAF5;
   text-align: center;
-  padding: 5px 15px;
+  padding: 8px 20px;
   background-color: transparent;
   position: relative;
-  color: brown;
-  z-index: 1;
+  
+  color: black;
   overflow: hidden;
-  transition: all 0.3s ease-in-out;
-  -webkit-transition: all 0.3s ease-in-out;
-  -moz-transition: all 0.3s ease-in-out;
-  -ms-transition: all 0.3s ease-in-out;
-  -o-transition: all 0.3s ease-in-out;
+  z-index: 1;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
 }
 .overLay{
     top: 0;
-    left: 0;
+   left:0;
     position: absolute;
     height: 100%;
     width: 100%;
-    transform: translateX(-10px);
-    background-color: cadetblue;
+    transform:translateX(-100%);
+    background-color: #99CAF5;
     z-index: -1;
-    /* -webkit-transform: translateX(-10px);
-    -moz-transform: translateX(-10px);
-    -ms-transform: translateX(-10px);
-    -o-transform: translateX(-10px); */
+}
+.mainButton:hover {
+  color:white;
+  transition: all 0.5s ease-in-out;
+  -webkit-transition: all 0.5s ease-in-out;
+}
+.mainButton:hover .overLay{
+  transform:translateX(0);
+  transition: all 0.5s ease-in-out;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
 }

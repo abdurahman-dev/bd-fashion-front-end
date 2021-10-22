@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 import mainBanners from '../../untils/Data/banners';
+import MainButton from '../../Ul/Button';
 
 const Header = () => {
   const settings = {
@@ -20,48 +21,38 @@ const Header = () => {
         {mainBanners.map((item, i) => (
           <div>
             <div
-          className="flex space-x-4  items-center content-start mx-auto"
-          style={{
-            backgroundImage: `url(${item.img})`,
-            backgroundPosition: 'center top',
-            backgroundSize: 'cover',
-            backgroundRepeat: 'no-repeat',
-            backgroundAttachment: 'scroll',
-            height: '550px',
-          }}
-        >
-          <div className="flex-1"></div>
-          <div
-            className={`order-${item.textSide == 'left' && 'first'} order-${
-              item.textSide == 'right' && 'last'
-            } flex-1 `}
-          >
-            <div
-              className={`${item.textSide == 'left' && 'pl-20'} py-5  ${
-                item.textSide == 'center' && 'text-center'
-              }`}
+              className="flex space-x-4  items-center content-start mx-auto"
+              style={{
+                backgroundImage: `url(${item.img})`,
+                backgroundPosition: 'center top',
+                backgroundSize: 'cover',
+                backgroundRepeat: 'no-repeat',
+                backgroundAttachment: 'scroll',
+                height: '550px',
+              }}
             >
-              <h5 className="text-xl font-sans font-bold">
-                {item.subtitle}
-              </h5>
-              <h2 className="text-5xl font-sans font-semibold">
-                {item.title}
-              </h2>
-              <p>{item.description}</p>
-              <Link
-                to="/login"
-                style={{
-                  backgroundColor: 'gray',
-                  padding: '7px 35px',
-                  borderRadius: '5px',
-                }}
+              <div className="flex-1"></div>
+              <div
+                className={`order-${item.textSide == 'left' && 'first'} order-${
+                  item.textSide == 'right' && 'last'
+                } flex-1 `}
               >
-                {item.buttonTitle}
-              </Link>
+                <div
+                  className={`${item.textSide == 'left' && 'pl-20'} py-5  ${
+                    item.textSide == 'center' && 'text-center'
+                  }`}
+                >
+                  <h5 className="text-xl font-sans font-bold">
+                    {item.subtitle}
+                  </h5>
+                  <h2 className="text-5xl font-sans font-semibold">
+                    {item.title}
+                  </h2>
+                  <p>{item.description}</p>
+                </div>
+              </div>
+              <div className="flex-1"></div>
             </div>
-          </div>
-          <div className="flex-1"></div>
-        </div>
           </div>
         ))}
       </Slider>

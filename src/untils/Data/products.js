@@ -1,6 +1,6 @@
 const products = [
   {
-    id:"abc_010",
+    id: 'abc_010',
     name: 'C Eco Aware Organic Cotton top',
     slug: 'c-eco-aware-organic-cotton-top-ab',
     price: 20,
@@ -10,7 +10,7 @@ const products = [
     discount: '0',
     subCategory: 'Cloth', //id of a category but it will be subcategory
     reviews: [],
-    brand: 'Nike',
+    brand: 'Boom',
     tags: {
       onSale: true,
       new: true,
@@ -30,7 +30,8 @@ const products = [
       'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quod ullam veritatis perferendis, dolore expedita quia molestiae laborum velit minus impedit.',
     uploadDate: new Date(),
   },
-  {id:"abc_011",
+  {
+    id: 'abc_011',
     name: 'Z Classic one-breasted jacket',
     slug: 'z-classic-one-breasted-jacket-ac',
     price: 10,
@@ -60,7 +61,8 @@ const products = [
       'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quod ullam veritatis perferendis, dolore expedita quia molestiae laborum velit minus impedit.',
     uploadDate: new Date(),
   },
-  {id:"abc_012",
+  {
+    id: 'abc_012',
     name: 'Z Eco Aware Organic Cotton top Model-GH',
     slug: 'z-e-eco-aware-organic-cotton-ad',
     price: 25,
@@ -90,7 +92,8 @@ const products = [
       'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quod ullam veritatis perferendis, dolore expedita quia molestiae laborum velit minus impedit.',
     uploadDate: new Date(),
   },
-  {id:"abc_013",
+  {
+    id: 'abc_013',
     name: 'B Classic one-breasted jacket',
     slug: 'b-classic-one-breasted-jacket-af',
     price: 50,
@@ -120,7 +123,8 @@ const products = [
       'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quod ullam veritatis perferendis, dolore expedita quia molestiae laborum velit minus impedit.',
     uploadDate: new Date(),
   },
-  {id:"abc_014",
+  {
+    id: 'abc_014',
     name: 'O Eco Aware Organic Cotton top Small-GH',
     slug: 'o-eco-aware-organic-cotton-top-ag',
     price: 15,
@@ -150,7 +154,8 @@ const products = [
       'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quod ullam veritatis perferendis, dolore expedita quia molestiae laborum velit minus impedit.',
     uploadDate: new Date(),
   },
-  {id:"abc_015",
+  {
+    id: 'abc_015',
     name: 'A Classic one-breasted jacket',
     slug: 'a-classic-one-breasted-jacket-ag',
     price: 30,
@@ -180,7 +185,8 @@ const products = [
       'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quod ullam veritatis perferendis, dolore expedita quia molestiae laborum velit minus impedit.',
     uploadDate: new Date(),
   },
-  {id:"abc_016",
+  {
+    id: 'abc_016',
     name: 'K Eco Aware Organic Cotton top',
     slug: 'k-eco-aware-organic-cotton-top-ah',
     price: 5,
@@ -210,7 +216,8 @@ const products = [
       'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quod ullam veritatis perferendis, dolore expedita quia molestiae laborum velit minus impedit.',
     uploadDate: new Date(),
   },
-  {id:"abc_017",
+  {
+    id: 'abc_017',
     name: 'Nike Shoes For Mens',
     slug: 'eco-aware-organic-cotton-top-az',
     price: 15,
@@ -240,7 +247,8 @@ const products = [
       'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quod ullam veritatis perferendis, dolore expedita quia molestiae laborum velit minus impedit.',
     uploadDate: new Date(),
   },
-  {id:"abc_018",
+  {
+    id: 'abc_018',
     name: 'Nike Shoes For Mens',
     slug: 'eco-aware-organic-cotton-top-am',
     price: 15,
@@ -270,7 +278,8 @@ const products = [
       'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quod ullam veritatis perferendis, dolore expedita quia molestiae laborum velit minus impedit.',
     uploadDate: new Date(),
   },
-  {id:"abc_019",
+  {
+    id: 'abc_019',
     name: 'Nike Shoes For Mens',
     slug: 'eco-aware-organic-cotton-top-av',
     price: 15,
@@ -300,7 +309,8 @@ const products = [
       'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quod ullam veritatis perferendis, dolore expedita quia molestiae laborum velit minus impedit.',
     uploadDate: new Date(),
   },
-  {id:'abc_020',
+  {
+    id: 'abc_020',
     name: 'Nike Shoes For Mens',
     slug: 'eco-aware-organic-cotton-top-ao',
     price: 15,
@@ -310,7 +320,7 @@ const products = [
     discount: '40',
     subCategory: 'Cloth',
     reviews: [],
-    brand: 'Nike',
+    brand: 'Adidas',
     tags: {
       onSale: true,
       new: true,
@@ -330,7 +340,8 @@ const products = [
       'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quod ullam veritatis perferendis, dolore expedita quia molestiae laborum velit minus impedit.',
     uploadDate: new Date(),
   },
-  {id:'abc_0121',
+  {
+    id: 'abc_0121',
     name: 'Nike Shoes For Mens',
     slug: 'eco-aware-organic-cotton-top-at',
     price: 15,
@@ -340,7 +351,7 @@ const products = [
     discount: '0',
     subCategory: 'Cloth',
     reviews: [],
-    brand: 'Nike',
+    brand: 'Adidas',
     tags: {
       onSale: true,
       new: true,

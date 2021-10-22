@@ -8,17 +8,17 @@ import { category as Category } from '../../untils/Data/category';
 import { BsTagFill, BsTag } from 'react-icons/bs';
 import './style.css';
 import { Link } from 'react-router-dom';
-
+import { storeProduct } from '../../untils/Cart';
 
 const ProductDetails = () => {
   const [qntCount, setQntCount] = useState(1);
-
   const pdId = useParams();
   const product = products.find((item) => item.slug === pdId.id);
   const images = product.image;
 
   const {
     name,
+    id,
     stock,
     rating,
     discount,
@@ -28,7 +28,7 @@ const ProductDetails = () => {
     brand,
     description,
   } = product;
-  const discountPrice = ((discount / 100) * price).toFixed();
+  const discountPrice =Number(discount) >0 && ((Number(discount) / 100) * price).toFixed();
   const settings = {
     customPaging: function (i) {
       return (
@@ -51,31 +51,31 @@ const ProductDetails = () => {
     edit: false,
   };
   const categoryName = Category.find((item) => item.id == category);
-
-  const handleQnty=(action)=>{
-    if(action == 'sub'){
-      if(qntCount <= 1 ){
-        alert('quantity must be greater then one')
-        return
-      }else{setQntCount(qntCount - 1)}}
-    if(action == 'add'){
-      if(qntCount >= stock ){
-        alert(`There are ${stock} product in Stock`)
-        return
-      }else{
-        setQntCount(qntCount + 1)
-      }}
+  const handleQnty = (action) => {
+    if (action == 'sub') {
+      if (qntCount <= 1) {
+        alert('quantity must be greater then one');
+        return;
+      } else {
+        setQntCount(qntCount - 1);
+      }
     }
-
-// eslint-disable-next-line react-hooks/exhaustive-deps
-const handleProductAddToCard=()=>{
-  const pdInfo={
-    name:name,
-    price:discountPrice ? discountPrice :price,
-    quantity:qntCount
+    if (action == 'add') {
+      console.log('add');
+      if (qntCount >= stock) {
+        alert(`There are ${stock} product in Stock`);
+        return;
+      } else {
+        setQntCount(qntCount + 1);
+      }
+    }
   };
-}
-
+  const handleProductAddToCard = () => {
+    storeProduct(id, qntCount);
+  };
+  useEffect(() => {
+    setQntCount(1);
+  }, [product]);
   return (
     <>
       <div className="py-20 ">
@@ -119,11 +119,13 @@ const handleProductAddToCard=()=>{
               </div>
               <div>
                 <span className="text-2xl font-medium text-red-600">
-                  Price : $ {discount ? discountPrice : price}
+                  Price : $ {discountPrice ? discountPrice : product.price}
                 </span>
-                <span className="text-normal ml-3 text-gray-600">
+                {
+                  Number(discount)> 1 && <span className="text-normal ml-3 text-gray-600">
                   {discount && `$${price}`} {discount}%off
                 </span>
+                }
               </div>
               <div className="text-lg py-1">
                 <span>
@@ -150,19 +152,28 @@ const handleProductAddToCard=()=>{
                 </span>
               </div>
               <div className=" w-2/5 my-4">
-                Quantity 
+                Quantity
                 <div className="flex mt-2 justify-between text-center items-center w-full h-full">
-                  <button onClick={()=>handleQnty('sub')} className="border-2  flex-1">
-                   -
+                  <button
+                    onClick={() => handleQnty('sub')}
+                    className="border-2  flex-1"
+                  >
+                    -
                   </button>
                   <div className="border-2  flex-1">{qntCount}</div>
-                  <button onClick={()=>handleQnty('add')} className="border-2 flex-1">
-                  +
+                  <button
+                    onClick={() => handleQnty('add')}
+                    className="border-2 flex-1"
+                  >
+                    +
                   </button>
                 </div>
               </div>
               <div className="flex text-white py-4">
-                <button onClick={handleProductAddToCard} className="py-2 px-4 bg-yellow-600 rounded">
+                <button
+                  onClick={handleProductAddToCard}
+                  className="py-2 px-4 bg-yellow-600 rounded"
+                >
                   add to card
                 </button>
                 <button className="py-2 px-4 bg-green-600 rounded ml-4">
@@ -188,7 +199,3 @@ const handleProductAddToCard=()=>{
 };
 
 export default ProductDetails;
-
-{
-  /* <span><BsTagFill className='inline-block text-red-600 text-2xl'/></span> */
-}

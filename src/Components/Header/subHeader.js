@@ -13,9 +13,8 @@ const SubHeader = () => {
         <p className="pt-5 text-lg">
           You’ll always be in fashion with our collection of clothing
         </p>
-        <p className="mt-8 no-underline hover:underline cursor-pointer">
-        <Link to='/collections' >All Collections</Link>
-        </p>
+        
+         <MainButton title={'All Collections'} href={'/collections'} />
       </div>
       {subHeaderBanners.map((item, i) => (
         <Link to={`/category/${item.id}`}>

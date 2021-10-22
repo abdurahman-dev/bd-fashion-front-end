@@ -4,7 +4,7 @@ import products from '../../untils/Data/products';
 
 const FeaturedProducts = () => {
   const [pd, setPd] = useState(products);
-  const [slideShow, setSlideShow] = useState(5);
+  const [slideShow, setSlideShow] = useState(4);
 
   const handleClick = (id) => {
     if (id == 'all') {
@@ -14,7 +14,7 @@ const FeaturedProducts = () => {
       } else if (products.length === 4 || products.length === 5) {
         setSlideShow(4);
       } else {
-        setSlideShow(5);
+        setSlideShow(4);
       }
     } else {
       const pt = products.filter((item, i) => item.category === id);
@@ -24,7 +24,7 @@ const FeaturedProducts = () => {
       } else if (pt.length === 4 || pt.length === 5) {
         setSlideShow(4);
       } else {
-        setSlideShow(5);
+        setSlideShow(4);
       }
     }
   };
@@ -32,10 +32,12 @@ const FeaturedProducts = () => {
   return (
     <div className="py-20 bg-white">
       <div className="container mx-auto">
-        <div className="flex justify-between items-center py-8">
-          <div><h2 className='text-3xl font-medium'>
-          Featured Products
-              </h2></div>
+        <div className="flex md:flex-row justify-between items-center text-justify sm:text-center py-8 flex-col">
+          <div>
+            <h2 className="text-3xl font-medium sm:text-lg">
+              Featured Products
+            </h2>
+          </div>
           <div className="">
             <button
               onClick={() => handleClick('all')}
