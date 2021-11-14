@@ -27,6 +27,9 @@ const CartItems = ({ setCart, cart }) => {
   }, [cartProductsKeys]);
 
   return (
+    <div className={`${cart ? 'mainCartActive' : 'mainCartDeactivate'} mainCart`}>
+    <div className={`w-full h-full top-0 hidden md:block bg-opacity-50 left-0 bg-gray-600 `} onClick={()=>setCart(false)}>
+    </div>
     <div className={`${cart ? 'active' : 'deactivate'} cart`}>
       <div className="flex-col justify-between">
         <div className="flex justify-between items-center  py-4 border-b-2 border-solid border-white">
@@ -65,7 +68,53 @@ const CartItems = ({ setCart, cart }) => {
       </div>
       <div>process</div>
     </div>
+    </div>
   );
 };
 
 export default CartItems;
+
+
+/* 
+${cart ? 'bg-gray-800 visible' : 'hidden'}
+<div className={`${cart ? 'active' : 'deactivate'} cart`}>
+      <div className="flex-col justify-between">
+        <div className="flex justify-between items-center  py-4 border-b-2 border-solid border-white">
+          <div className="flex items-center">
+            <BsFillBagCheckFill className="text-xl" />
+            <h3 className="text-black text-2xl font-semibold ml-1">
+              {cartProducts.length} {cartProducts.length > 1 ? 'Items' : 'Item'}
+            </h3>
+          </div>
+
+          <button
+            onClick={handleCart}
+            className=" font-medium text-xl text-black hover:text-white"
+          >
+            <BsFillXCircleFill />
+          </button>
+        </div>
+        <div className="mt-4 overflow-y-auto" style={{ height: '80vh' }}>
+          {cartProducts.length > 0
+            ? cartProducts.map((item) => (
+                <div className="flex justify-between items-center p-2 border-gray-500 border mb-2">
+                  <div>qnt</div>
+                  <div>img</div>
+                  <div>
+                    <div>name</div>
+                    <div>price</div>
+                  </div>
+                  <div>
+                    {' '}
+                    <BsFillXCircleFill />
+                  </div>
+                </div>
+              ))
+            : 'Null'}
+        </div>
+      </div>
+      <div>process</div>
+    </div>
+
+
+*/

@@ -19,7 +19,6 @@ const ProductCard = ({ product, height }) => {
   const discountPrice = Number(product.discount) > 1 &&  (Number(product.discount) / 100) *
   product.price ;
    
-  console.log(discountPrice);
   return (
     <div className="m-4">
       <Link to={`/product/${product.slug}`}>

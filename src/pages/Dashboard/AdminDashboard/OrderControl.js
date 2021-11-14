@@ -1,12 +1,12 @@
 import React from 'react';
 import DashboardLayout from '../DashboardLayout';
 
-const UserDashboard = () => {
+const OrderControl = () => {
     return (
         <DashboardLayout>
-           product status
+            order control
         </DashboardLayout>
     );
 };
 
-export default UserDashboard;
+export default OrderControl;

@@ -11,7 +11,7 @@ const Navbar = () => {
 
   useEffect(() => {
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 50) {
+      if (window.scrollY > 100) {
         setSticky(true);
       } else {
         setSticky(false);
@@ -27,6 +27,9 @@ const Navbar = () => {
     setCart(!cart);
   };
 
+  const loggedUser = true;
+  const admin = true
+
   return (
     <div className={`py-2 h-20  navbar ${sticky ? 'bgSticky' : 'bgNotSticky'}`}>
       <div className="container mx-auto  h-full">
@@ -36,9 +39,7 @@ const Navbar = () => {
               <h1 className="text-2xl md:text-3xl font-medium">BD Fashion</h1>
             </Link>
           </div>
-          {/* <div>
-          <input type="text" placeholder='search' className='border-2 border-red-600' />
-          </div> */}
+          
           <div>
             <ul className="flex">
               <button onClick={handleCart} className="">
@@ -47,10 +48,27 @@ const Navbar = () => {
                   {cartItems.length}
                 </li>
               </button>
-              <Link to="/login">
-                {' '}
-                <li className="font-medium md:font-bold text-xl">JOIN</li>
-              </Link>
+              {loggedUser === false ? (
+                <Link to="/login">
+                  {' '}
+                  <li className="font-medium md:font-bold text-xl">JOIN</li>
+                </Link>
+              ) : admin ? (
+                <Link to="/adminDashboard">
+                  {' '}
+                  <li className="font-medium md:font-bold text-xl mr-4 md:mr-8">
+                    avatars
+                  </li>
+                </Link>
+              ) : (
+                <Link to="/userProductStatus">
+                  {' '}
+                  <li className="font-medium md:font-bold text-xl mr-4 md:mr-8">
+                    DeashBoard
+                  </li>
+                </Link>
+              )
+              }
             </ul>
           </div>
         </div>

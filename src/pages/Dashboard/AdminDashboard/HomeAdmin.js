@@ -1,10 +1,11 @@
 import React from 'react';
+import DashboardLayout from '../DashboardLayout';
 
 const HomeAdmin = () => {
     return (
-        <div>
-           Home
-       </div>
+        <DashboardLayout>
+        admin home
+    </DashboardLayout>
     );
 };
 

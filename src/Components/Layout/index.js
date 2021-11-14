@@ -14,7 +14,6 @@ const Layout = ({ pageTitle, children }) => {
     <div>
       <Navbar/>
       <div  className='pt-20'> {children}</div>
-     
       <Subscribe/>
       <Footer/>
     </div>
