@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Redirect } from 'react-router';
 import img from '../../images/people-carrying-shopping-bags-collection_52683-15820.jpg';
 import { clearErrors, getLogged, userRegister } from '../../Redux/Actions/auth.action';
 import Navbar from '../Shared/Navbar';
@@ -10,26 +11,19 @@ const LogIn = ({history}) => {
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+  
   const dispatch = useDispatch();
-
-
   const authLogin = useSelector(
     (state) => state.authLoginReducer
   );
-
   const authReg = useSelector(
     (state) => state.authRegisterReducer
   );
-
   const isAuthenticated=authLogin.isAuthenticated | authReg.isAuthenticated;
   const loading=authLogin.loading | authReg.loading;
   const error=authLogin.error | authReg.error;
 
 useEffect(()=>{
-  // if(isAuthenticated){
-  //   history.push('/')
-  // }
   if(error){
       dispatch(clearErrors())
   }
@@ -47,7 +41,7 @@ useEffect(()=>{
     setEmail('');
     setPassword('');
   };
-
+  
   const handleLog = () => {
     const info = {
       email,
@@ -57,8 +51,9 @@ useEffect(()=>{
     setEmail('');
     setPassword('');
   };
-  let x = document.cookie;
-  console.log(x);
+  if(isAuthenticated){
+   return <Redirect to={'/'}/>
+  }
   return (
     <div>
       <Navbar />

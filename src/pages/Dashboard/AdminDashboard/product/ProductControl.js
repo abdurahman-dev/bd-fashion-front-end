@@ -1,22 +1,27 @@
 import React, { useEffect, useState } from 'react';
-import DashboardLayout from '../DashboardLayout';
-import ProductModel from '../../../Ul/Modal/ProductModel';
+import DashboardLayout from '../../DashboardLayout';
+import ProductModal from '../../../../Ul/Modal/ProductModel';
 import { useDispatch, useSelector } from 'react-redux';
-import { newProductAdded } from '../../../Redux/Actions/product.action';
+import { newProductAdded } from '../../../../Redux/Actions/product.action';
 import toast, { Toaster } from 'react-hot-toast';
-import AddProductModalInfo from '../../../Ul/Modal/ProductModalInfo';
+import AddProductModalInfo from '../../../../Ul/Modal/ProductModalInfo';
+import MyTable from '../../../../Ul/TableList/Table';
 
 const ProductControl = () => {
   const [productName, setProductName] = useState('');
   const [productSellerName, setProductSellerName] = useState('');
   const [productDescription, setProductDescription] = useState('');
   const [productCategory, setProductCategory] = useState('');
+  const [productSubcategory, setProductSubcategory] = useState('');
   const [productPrice, setProductPrice] = useState(0);
   const [productStock, setProductStock] = useState(0);
   const [productPriceDiscount, setProductPriceDiscount] = useState(0);
   const [productImg, setProductImg] = useState([]);
   const [isVisible, setVisible] = useState(false);
   const [isVisibleMesg, setVisibleMesg] = useState(false);
+  const [products,setProducts] = useState([]);
+  const [category,setCategory] = useState([]);
+  const [subcategory,setSubcategory] = useState([]);
   const dispatch = useDispatch();
 
   const productInfo = {
@@ -37,20 +42,28 @@ const ProductControl = () => {
     setProductDescription,
     productCategory,
     setProductCategory,
+    productSubcategory,
+    setProductSubcategory,
+    category,
+    subcategory
   };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const state = useSelector((state) => state.addProductReducer);
+  const initialState = useSelector((state) => state.adminInitialData);
+  
+
   const addProduct = () => {
     const productInfo = {
       productName,
       productSellerName,
       productDescription,
       productCategory,
+      productSubcategory,
       productPrice,
       productStock,
       productImg,
     };
     dispatch(newProductAdded(productInfo));
-    setVisibleMesg(true)
+    setVisibleMesg(true);
     if (!state.error) {
       setVisible(false);
       setProductName('');
@@ -62,17 +75,32 @@ const ProductControl = () => {
     }
   };
 
-  const state = useSelector((state) => state.addProductReducer);
-
   useEffect(() => {
-    if (state.product && isVisibleMesg) {
+    if (state.products.pd && isVisibleMesg) {
       setVisible(false);
       toast.success('Successfully created!', {
         duration: 4000,
         position: 'top-right',
       });
+      window.location.reload();
     }
-  }, [isVisibleMesg,state.product]);
+    if (state.error && isVisibleMesg) {
+      setVisible(true);
+      toast.error('Something wrong', {
+        duration: 4000,
+        position: 'top-right',
+      });
+    }
+  }, [isVisibleMesg, state.products, state.error]);
+
+  useEffect(() => {
+    if (initialState) {
+      setProducts(initialState.products)
+      setCategory(initialState.category)
+      setSubcategory(initialState.subcategories)
+    }
+  }, [initialState]);
+  
 
   return (
     <DashboardLayout>
@@ -87,13 +115,16 @@ const ProductControl = () => {
           <h4 className="font-medium">Add Product</h4>{' '}
         </button>
       </div>
-      <div></div>
-      <ProductModel isVisible={isVisible} setVisible={setVisible}>
+      <div>
+        ===
+        <MyTable data={products}/>
+      </div>
+      <ProductModal isVisible={isVisible} setVisible={setVisible}>
         <AddProductModalInfo
           productInfo={productInfo}
           addProduct={addProduct}
         />
-      </ProductModel>
+      </ProductModal>
     </DashboardLayout>
   );
 };

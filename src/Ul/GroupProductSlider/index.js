@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 
 import ProductCard from '../ProductCard';
@@ -11,7 +10,7 @@ const ProductSlider = ({ groupTitle, products, slidesToShow}) => {
     autoplay: true,
     speed: 500,
     arrows: true,
-    slidesToShow: slidesToShow,
+    slidesToShow: products.length < slidesToShow ? products.length : slidesToShow,
     slidesToScroll: 2,
     responsive: [
       {
@@ -47,13 +46,17 @@ const ProductSlider = ({ groupTitle, products, slidesToShow}) => {
           </div>
         </div>
       )}
-      <div className="" style={{ width: '94%', margin: '0 auto' }}>
+      {
+        products.length>0 ? <div className="" style={{ width: '94%', margin: '0 auto' }}>
         <Slider {...settings}>
           {products.map((product, i) => (
             <ProductCard product={product} key={i}/>
           ))}
         </Slider>
-      </div>
+      </div> : <h2 className="text-center">
+        No Products
+      </h2>
+      }
     </div>
   );
 };

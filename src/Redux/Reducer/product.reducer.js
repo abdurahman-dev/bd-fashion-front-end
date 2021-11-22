@@ -98,8 +98,9 @@ export const addProductReducer=(state=initialState,action)=>{
             const newState={
                 ...state,
                loading:false,
-               product:action.payload.product,
+               products:action.payload.product,
                success:action.payload.success,
+               error:null,
             }
             return newState
         }

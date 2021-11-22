@@ -6,7 +6,7 @@ const Subscribe = () => {
   const [email, setEmail] = useState('');
 
   const handleEmail = (e) => {
-    if (e == '') {
+    if (e === '') {
       return setEmptyEmail(true);
     }
     const re =
@@ -27,31 +27,25 @@ const Subscribe = () => {
       }
   }
   return (
-    <div className="py-12 bg-gray-200 ">
+    <div className="py-12 bg-red-50">
       <div className="container flex justify-center text-center items-center h-full mx-auto">
         <div>
-          <h5 className='text-black text-2xl font-medium'>SUBSCRIBE TO OUR NEWSLETTER</h5>
+          <h5 className='text-black text-3xl font-medium'>SUBSCRIBE TO OUR NEWSLETTER</h5>
           <p className='text-black text-medium font-normal py-2'>Get the latest updates on new products and upcoming sales</p>
-
-          {emptyEmail && <p className="text-red-700"> Enter Your Email</p>}
-          {validEmail === false && (
-            <p className="text-red-700"> Enter Your Valid Email</p>
-          )}
-          <div className="flex">
+          <div className="flex rounded-xl bg-white mt-3 border-2 border-gray-900">
             <input
               type="text"
               onClick={handleClick}
               onBlur={(e) => handleEmail(e.target.value)}
-              className="bg-white text-black inline-block focus:ring-blue-600 w-full pl-7 pr-5 sm:text-sm  rounded-lg h-8"
+              className="bg-white text-black  focus:ring-blue-600 w-full pl-7 pr-5 sm:text-sm outline-none h-10 rounded-b-xl rounded-l-xl"
               placeholder="Enter Your Email"
             />
             <button
-              className={`inline-block  ml-3 ${
-                validEmail ? 'block' : 'hidden'
-              }`}
+            className='bg-blue-400 px-4 border-2 rounded-xl text-white uppercase 
+            text-lg font-medium'
               onClick={emailHandle }
             >
-        
+        Submit
             </button>
           </div>
         </div>

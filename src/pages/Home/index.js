@@ -1,27 +1,29 @@
 import React from 'react';
-import ProductSlider from '../../Ul/GroupProductSlider';
-import Header from '../../Components/Header';
-import SubHeader from '../../Components/Header/subHeader';
+import Header from '../../Sections/Header';
+import SubHeader from '../../Sections/Header/subHeader';
 import Layout from '../../Components/Layout';
-import products from '../../untils/Data/products';
-import NewProducts from '../../Components/NewProducts';
-import BestSellers from '../../Components/BestSeller';
+import NewProducts from '../../Sections/NewProducts';
 import MenuBanners from './HomeMenuBanners';
-import FeaturedProducts from '../../Components/FeaturedProducts';
-
+import FeaturedProducts from '../../Sections/FeaturedProducts';
+import ChooseCategories from '../../Sections/ChooseCategories';
+import SunglassesBanner from '../../Sections/LastBanner';
+import TopCollection from '../../Sections/TopCollection';
+import SiteInfoTwo from '../../Sections/SiteInfo';
+import InfoOne from '../../Sections/SiteInfo/InfoOne';
 
 const Home = () => {
-  const ToDaysProduct = products.filter(
-    (item, i) => item.tags.new === true
-  );
   return (
     <Layout pageTitle="BD Fashion">
       <Header />
       <SubHeader />
-    <BestSellers/>
-    <MenuBanners/>
-      {ToDaysProduct.length > 0 &&  <NewProducts products={ToDaysProduct}/>}
-      <FeaturedProducts/>
+      <TopCollection />
+      {/* <MenuBanners /> */}
+      <ChooseCategories />
+      <FeaturedProducts />
+      <InfoOne/>
+      <SunglassesBanner />
+      <NewProducts />
+      <SiteInfoTwo/>
     </Layout>
   );
 };

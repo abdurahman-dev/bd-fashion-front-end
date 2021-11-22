@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import DashboardLayout from '../DashboardLayout';
 
 const UserControl = () => {
+    
     return (
         <DashboardLayout>
-            user control
+         user control
         </DashboardLayout>
     );
 };

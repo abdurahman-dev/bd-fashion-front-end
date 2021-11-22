@@ -21,7 +21,7 @@ export const authLoginReducer = (state = initialData, action) => {
         ...state,
         loading: false,
         isAuthenticated: true,
-        user: action.payload,
+        user: action.payload
       };
       return newState;
     }

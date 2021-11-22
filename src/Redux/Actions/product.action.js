@@ -54,9 +54,13 @@ export const newProductAdded = (productInfo) => {
         '/admin/product/create',
         productInfo
       );
+      const pd=res.data.product
       dispatch({
         type: GetProductsConstants.ADD_SINGLE_PRODUCT_SUCCESS,
-        payload: res.data,
+        payload: {
+          success:res.data.success,
+          product:{pd}
+        }
       });
     } catch (err) {
       console.log(err);

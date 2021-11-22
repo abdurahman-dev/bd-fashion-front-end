@@ -12,7 +12,7 @@ const RelatedProducts = ({ catId }) => {
     dispatch(getProducts());
     const pd = pdss.filter((item) => item.category === catId);
     setPds(pd)
-  }, [dispatch,catId]);
+  }, [dispatch, catId, pdss]);
 
 
   console.log(pds);

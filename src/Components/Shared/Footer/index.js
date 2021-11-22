@@ -3,7 +3,7 @@ import FooterCol from './FooterCol';
 
 const Footer = () => {
   return (
-    <div className="bg-gray-200">
+    <div className="bg-red-50">
       <div style={{borderTop:'2px solid gray',width:'100%',height:'10px'}}></div>
       <div className="container mx-auto py-12">
         <div className="grid gap-4 grid-cols-2 md:grid-cols-4">

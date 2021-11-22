@@ -1,7 +1,6 @@
-import React,{useState} from 'react';
+import React from 'react';
 
-const ProductModal = ({ isVisible, setVisible,children}) => {
- 
+const ProductModal = ({ isVisible, setVisible, children }) => {
   const hide = () => {
     setVisible(false);
   };

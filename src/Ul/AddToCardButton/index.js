@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { BsBagPlus, BsFillEyeFill } from 'react-icons/bs';
 import './style.css';
 

@@ -1,10 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { BsXLg } from 'react-icons/bs';
+import { useSelector } from 'react-redux';
 
 const Sidebar = ({onClick,sidebar}) => {
-  const admin = true;
- 
+  const authLogin = useSelector(state => state.authLoginReducer)
+  let admin = false
+  if(authLogin.user?.role==='admin'){
+    admin = true
+  }
   return (
     <div className={`${sidebar ? 'sidebarActive' : 'sidebarDeactivate'} sidebar`}>
       <div className={`${sidebar ? 'sidebarItemActive' : 'sidebarITemDeactivate'} sidebarITem`}>
@@ -13,12 +17,12 @@ const Sidebar = ({onClick,sidebar}) => {
         <ul style={{ listStyleType: 'none', padding: 0 }}>
           {admin
             ? adminMenu.map((item, i) => (
-                <Link onClick={onClick} to={item.href}>
+                <Link key={i} onClick={onClick} to={item.href}>
                   <li className="hover:bg-gray-500 hover:text-white text-md py-4">{item.title}</li>
                 </Link>
               ))
             : userMenu.map((item, i) => (
-                <Link onClick={onClick} to={item.href}>
+                <Link key={i} onClick={onClick} to={item.href}>
                   <li className="hover:bg-gray-500 hover:text-white text-md py-4">{item.title}</li>
                 </Link>
               ))}
@@ -60,9 +64,14 @@ const adminMenu = [
     href: '/manageUsers',
   },
   {
+    title: 'Category',
+    href: '/categoryControl',
+  },
+  {
     title: 'Go Site',
     href: '/',
   },
+
 ];
 
 const userMenu = [

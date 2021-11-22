@@ -5,12 +5,12 @@ import img2 from '../../../images/menu-banner-2_570x161_crop_center.jpg';
 
 const MenuBanners = () => {
   return (
-    <div className=" bg-gray-200 py-12">
+    <div className="">
       <div className="container mx-auto bg-gray-200 py-12 h-auto">
       <h2 className="text-center text-3xl font-medium">Best Collection</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 h-full pt-12">
         {bannerInfo.map((item, i) => (
-          <Link to={item.href} key={i}>
+          <Link to={item.href} key={i} className='text-black'>
             <div
               style={{
                 backgroundImage: `url(${item.bg})`,

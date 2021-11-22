@@ -1,4 +1,4 @@
-import axiosInstance from '../../helper/axios';
+import axios from '../../helper/axios';
 import { AuthLoginConstants, AuthRegisterConstants } from './constants';
 
 export const getLogged = (info) => {
@@ -8,20 +8,21 @@ export const getLogged = (info) => {
         type: AuthLoginConstants.AUTH_LOGIN_REQUEST,
       });
 
-      const { data } = await axiosInstance.post('/login', {
+      const res = await axios.post('/login', {
         ...info,
       });
-
-      // eslint-disable-next-line no-useless-concat
-      document.cookie = 'token' + "=" + (data.token || "")   + "; path=/";
-
-      console.log(data.user);
+      //token will be remove after 7days
+      const date = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
+      document.cookie =`token=${res.data.token || ''};expires=${date}; path=/`;
+      const { token, userInfo } = res.data;
+      localStorage.setItem("token", token);
+      localStorage.setItem("user", JSON.stringify(userInfo));
+      
       dispatch({
         type: AuthLoginConstants.AUTH_LOGIN_SUCCESS,
-        payload: data.user,
+        payload: res.data.userInfo,
       });
     } catch (error) {
-      console.log(error);
       dispatch({
         type: AuthLoginConstants.AUTH_LOGIN_FAIL,
         payload: error,
@@ -30,15 +31,37 @@ export const getLogged = (info) => {
   };
 };
 
-export const userRegister = (info) => {
+export const isLoggedIn = () => {
+  return (dispatch) => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      const user = JSON.parse(localStorage.getItem("user"));
+      dispatch({
+        type: AuthLoginConstants.AUTH_LOGIN_SUCCESS,
+        payload: {
+          token,
+          ...user,
+        },
+      });
+    } else {
+      dispatch({
+        type: AuthLoginConstants.AUTH_LOGIN_FAIL,
+        payload: {
+          err: "need to logIn",
+        },
+      });
+    }
+  };
+};
 
+export const userRegister = (info) => {
   return async (dispatch) => {
     try {
       dispatch({
         type: AuthRegisterConstants.AUTH_REGISTER_REQUEST,
       });
       console.log(info);
-      const { data } = await axiosInstance.post('/register', {
+      const { data } = await axios.post('/register', {
         ...info,
       });
 

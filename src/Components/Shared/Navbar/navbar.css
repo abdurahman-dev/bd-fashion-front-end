@@ -1,4 +1,4 @@
-.navbar {
+.menubar {
   position: fixed;
   left: 0;
   width: 100%;
@@ -10,6 +10,6 @@
 }
 .bgSticky {
   height: 3.8rem;
-  background-color: #99CAF5;
-  box-shadow: 3px 3px 5px 6px rgba(0, 0, 0, 0.171);
+  background-color: #ffffff;
+  box-shadow: 3px 3px 5px 1px rgba(34, 34, 34, 0.089);
 }
