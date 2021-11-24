@@ -17,11 +17,11 @@ module.exports = {
         'last-banner-img':
           "url('https://loopinfosol.in/themeforest/ekka-html-v2/ekka-html/assets/images/offer-image/offer_bg.jpg')",
       },
-      height:{
-        thirtyRem:'30rem',
-        thirtyFiveRem:'35rem',
-        fortyRem:'40rem'
-      }
+      height: {
+        thirtyRem: '30rem',
+        thirtyFiveRem: '35rem',
+        fortyRem: '40rem',
+      },
     },
   },
   variants: {

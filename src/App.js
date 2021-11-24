@@ -56,7 +56,7 @@ function App() {
           <Route path="/userProductOrderList" component={ProductOrder} />
           <Route path="/userProfile" component={UserProfile} />
           <Route path="/product/:id" component={SingleProduct} />
-          <Route path="/category/:categoryId" component={ProductShowCase} />
+          <Route path="/shop/:catTitle" component={ProductShowCase} />
         </Switch>
       </Router>
     </>

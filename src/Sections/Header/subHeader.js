@@ -20,7 +20,7 @@ const SubHeader = () => {
           </Link>
         </div>
         {subHeaderBanners.map((item, i) => (
-          <Link to={`/category/${item.id}`}>
+          <Link to={`/shop/${'Clothes'}`}>
             <div className="cursor-pointer">
               <img
                 src={item.image}

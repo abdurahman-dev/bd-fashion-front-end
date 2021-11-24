@@ -127,7 +127,7 @@ export const getCategory = () => {
         type:CatConstants.GET_ALL_CATEGORY_SUBCATEGORY_REQUEST
       })
 
-      const res= await axios.get('categories')
+      const res= await axios.get('/categories')
       const {categories,success}=res.data
       dispatch({
         type:CatConstants.GET_ALL_CATEGORY_SUBCATEGORY_SUCCESS,
