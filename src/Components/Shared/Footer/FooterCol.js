@@ -11,7 +11,7 @@ const FooterCol = ({ item, title }) => {
   }
   return (
     <div>
-      <div className='mb-4'>
+      <div className='mb-2'>
           <h3 className='text-black text-2xl font-medium'>{title}</h3>
       </div>
       <div>

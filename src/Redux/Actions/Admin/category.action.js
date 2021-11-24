@@ -119,3 +119,31 @@ export const updateCategory = (name, func, id) => {
     }
   };
 };
+
+export const getCategory = () => {
+  return async (dispatch) => {
+    try {
+      dispatch({
+        type:CatConstants.GET_ALL_CATEGORY_SUBCATEGORY_REQUEST
+      })
+
+      const res= await axios.get('categories')
+      const {categories,success}=res.data
+      dispatch({
+        type:CatConstants.GET_ALL_CATEGORY_SUBCATEGORY_SUCCESS,
+        payload:{
+          categories,
+          success
+        }
+      })
+    } catch (err) {
+      dispatch({
+        type:CatConstants.CATEGORY_FAIL,
+        payload:err
+      })
+      dispatch({
+        type:CLEAR_ERRORS,
+      })
+    }
+  };
+};

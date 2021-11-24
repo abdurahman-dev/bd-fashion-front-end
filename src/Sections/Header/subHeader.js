@@ -13,9 +13,11 @@ const SubHeader = () => {
             You’ll always be in fashion with our collection of clothing
           </p>
 
-          <button class="transition duration-500 ease-in-out bg-gray-200 border-2 border-gray-500 px-9 py-1  hover:bg-blue-500 hover:border-blue-500 hover:text-white uppercase transform hover:translate-y-1 hover:scale-110 ...">
-          All Collection
-          </button>
+          <Link to="/collections">
+            <button class="transition duration-500 ease-in-out bg-blue-500 border-2 text-gray-50 border-blue-500 px-9 py-1  hover:bg-gray-200 hover:border-gray-500 hover:text-gray-900 uppercase transform hover:translate-y-1 hover:scale-110 ">
+              All Collection
+            </button>
+          </Link>
         </div>
         {subHeaderBanners.map((item, i) => (
           <Link to={`/category/${item.id}`}>

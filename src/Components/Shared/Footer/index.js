@@ -4,9 +4,9 @@ import FooterCol from './FooterCol';
 const Footer = () => {
   return (
     <div className="bg-red-50">
-      <div style={{borderTop:'2px solid gray',width:'100%',height:'10px'}}></div>
-      <div className="container mx-auto py-12">
-        <div className="grid gap-4 grid-cols-2 md:grid-cols-4">
+      <div className='border-t-2 border-gray-600 w-full h-3'></div>
+      <div className="container mx-auto py-10">
+        <div className="grid gap-4 grid-cols-2 md:grid-cols-4 ">
           <div className="">
             <FooterCol item={footerInfo[0]} title={'Company'}/>
           </div>
@@ -16,8 +16,19 @@ const Footer = () => {
           <div className="">
             <FooterCol item={footerInfo[2]} title={'Service'}/>
           </div>
-          <div className="">Will Do</div>
+          <div className="self-center hidden md:block">
+              <h2 className='text-3xl font-bold'>BD FASHION</h2>
+              <p className='text-gray-600'>Katgar, Patenga ,Chittagong, Bangladesh</p>
+              <strong>Call :</strong> <span>017*********</span> <br />
+              <strong>Email :</strong> <span>a.rahman4124@gmail.com</span>
+          </div>
         </div>
+        <div className="mt-4 block md:hidden">
+              <h2 className='text-3xl font-bold'>BD FASHION</h2>
+              <p className='text-gray-600'>Katgar, Patenga ,Chittagong, Bangladesh</p>
+              <strong>Call :</strong> <span>017*********</span> <br />
+              <strong>Email :</strong> <span>a.rahman4124@gmail.com</span>
+          </div>
       </div>
     </div>
   );
@@ -33,10 +44,11 @@ const footerInfo = [
     { label: 'Careers', href: '/' },
   ],
   [
-    { label: 'Link One B', href: '/' },
-    { label: 'Link Two B', href: '/' },
-    { label: 'Link Three B', href: '/' },
-    { label: 'Link Four B', href: '/' },
+    { label: 'Clothes', href: '/' },
+    { label: 'Watches', href: '/' },
+    { label: 'Electronics', href: '/' },
+    { label: 'Shoes', href: '/' },
+    { label: 'Bags', href: '/' },
   ],
   [
     { label: 'Help & FAQs', href: '/' },

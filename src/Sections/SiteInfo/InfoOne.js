@@ -13,7 +13,7 @@ const InfoOne = () => {
                   key={i}
                   className=" p-4 text-center transition duration-300 ease-in-out  border rounded hover:shadow-lg"
                 >
-                  <item.icon className="mx-auto text-5xl mb-2" />
+                  <item.icon className="mx-auto text-4xl mb-2" />
                   <h4 className="text-2xl font-semibold">{item.title}</h4>
                   <p className="px-4">{item.des}</p>
                 </div>

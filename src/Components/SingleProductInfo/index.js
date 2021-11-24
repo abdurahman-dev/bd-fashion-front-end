@@ -6,7 +6,7 @@ import ReactStars from 'react-stars';
 import { storeProduct } from '../../untils/Cart';
 import './style.css';
 
-export default function SingleProductInfo({ pd }) {
+export default function SingleProductInfo({ pd,quickView}) {
   const [qntCount, setQntCount] = useState(1);
   useEffect(() => {
     setQntCount(1);
@@ -28,7 +28,7 @@ export default function SingleProductInfo({ pd }) {
     customPaging: function (i) {
       return (
         <a href=" ">
-          <img src={productImage[i].url} alt="" className="h-16 w-full" />
+          <img src={productImage[i]?.url} alt="" className="h-16 w-full" />
         </a>
       );
     },
@@ -71,7 +71,7 @@ export default function SingleProductInfo({ pd }) {
       <div className="justify-self-center" style={{ width: '94%' }}>
         <Slider {...settings}>
           {productImage?.map((item, i) => (
-            <img src={item.url} alt="" className="rounded img-height" />
+            <img src={item?.url} alt="" className="rounded img-height" />
           ))}
         </Slider>
         <div className="h-20 "></div>
@@ -95,14 +95,22 @@ export default function SingleProductInfo({ pd }) {
            
           </div>
           <div className="ml-8">
-            <a
-              href="#rating"
+            {
+              quickView===true ? <p className={`${
+                reviews?.length ? 'text-yellow-500' : 'text-red-500'
+              }`}>
+                  {reviews?.length} reviews
+              </p> : <a
+              href={'#PdReviews'}
+
               className={`${
                 reviews?.length ? 'text-yellow-500' : 'text-red-500'
               }`}
             >
               {reviews?.length} reviews
             </a>
+            }
+            
           </div>
         </div>
         <div>

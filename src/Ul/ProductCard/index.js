@@ -113,7 +113,7 @@ const ProductCard = ({ product, height }) => {
         <Modal.Header closeButton>
   </Modal.Header>
         <div className="p-4">
-          <SingleProductInfo pd={product} />
+          <SingleProductInfo pd={product} quickView/>
         </div>
       </Modal>
     </div>

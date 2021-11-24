@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import ProductCard from '../../Ul/ProductCard';
 import { category } from '../../untils/Data/category';
 import products from '../../untils/Data/products';
+import New4Products from '../New4Products/index'
 
 const ProductsShow = () => {
   const query = useParams();
@@ -12,6 +14,10 @@ const ProductsShow = () => {
   const [product, setProduct] = useState(null);
   const [gridCol, setGridCol] = useState(4);
   const [brand, setBrand] = useState([]);
+  const [category, setCategory] = useState([]);
+
+  const state = useSelector((state) => state);
+  console.log(state);
 
   const FindBrand = () => {
     let brands = [];
@@ -22,23 +28,24 @@ const ProductsShow = () => {
     setBrand(FindBrand());
     const categories = category.find((item, i) => item.id === findCategory);
     const product = products.filter((item) => item.category === findCategory);
-    setTitle(categories.categoryTitle);
+
     setProduct(product);
-    if (product.length <= 2) {
-      setGridCol(2);
-      return;
-    }
-    // eslint-disable-next-line eqeqeq
-    if (product.length == 3) {
-      setGridCol(3);
-      return;
-    } else {
-      setGridCol(4);
-    }
-  }, [findCategory]);
+    // if (product.length <= 2) {
+    //   setGridCol(2);
+    //   return;
+    // }
+    // if (product.length === 3) {
+    //   setGridCol(3);
+    //   return;
+    // } else {
+    //   setGridCol(4);
+    // }
+  }, [category, findCategory]);
 
   const handleFeatureChange = (e) => {
-    const catProducts =  products.filter((item) => item.category === findCategory)
+    const catProducts = products.filter(
+      (item) => item.category === findCategory
+    );
     if (e === 'default') {
       setProduct(catProducts);
       if (catProducts.length <= '2') {
@@ -140,11 +147,54 @@ const ProductsShow = () => {
     setGridCol(count);
   };
 
-
   return (
-    <div className="container mx-auto bg-gray-200 py-12">
+    <>
+    <div className="bg-gray-900 h-32"></div>
+    
+    <div className="container mx-auto bg-gray-50 py-12">
+    <div className='bg-white w-1/6 h-10 mb-2 border border-gray-500 shadow'>
+      search
+    </div>
       <div className="flex flex-col md:flex-row">
-        <div className="flex-initial border-2 border-white order-2 md:order-1 w-5/5 md:w-1/5 ">
+      <div className='flex-initial order-2 md:order-1 w-5/5 md:w-1/5'>
+      <div className="  border-2 border-red-600 mb-4">
+          <div className="p-2 pl-4">
+            
+            <div>
+              <h4 className="text-lg font-medium">Category</h4>
+              <ul>
+               <li> adf</li>
+               <li> adf</li>
+               <li> adf</li>
+               <li> adf</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div className="border-2 border-red-600 ">
+          <div className="p-2 pl-4">
+            
+            <div>
+              <h4 className="text-lg font-medium">Fill by price</h4>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+        
+      </div>
+      {/* <New4Products/> */}
+    </div>
+    </>
+    
+  );
+};
+
+export default ProductsShow;
+
+/**
+
+<div className="flex-initial border-2 border-white order-2 md:order-1 w-5/5 md:w-1/5 ">
           <div className="pt-4 pl-4">
             <h1> FILTER BY</h1>
             <div>
@@ -167,7 +217,12 @@ const ProductsShow = () => {
             </div>
           </div>
         </div>
-        <div className="flex-initial order-1 md:order-2 bg-white w-5/5 md:w-4/5">
+ 
+ */
+
+/**
+
+<div className="flex-initial order-1 md:order-2 bg-white w-5/5 md:w-4/5">
           <div className="text-center text-4xl font-bold my-2">{title}</div>
           <div className="p-4 bg-gray-400">
             <div className="ml-auto flex justify-between ">
@@ -212,56 +267,52 @@ const ProductsShow = () => {
                   onClick={() => handleClick(3)}
                   className="text-white mx-2"
                 >
-                  {/* <BsGrid3X2GapFill style={{fontSize: '1.5rem', color: '#fff'}}/> 
+                  <BsGrid3X2GapFill style={{fontSize: '1.5rem', color: '#fff'}}/> 
                 
-                */}
-                  <svg
-                    width="18"
-                    height="18"
-                    viewBox="0 0 18 18"
-                    fill="#fff"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <rect width="4.5" height="18"></rect>
-                    <rect x="6.75" width="4.5" height="18"></rect>
-                    <rect x="13.5" width="4.5" height="18"></rect>
-                  </svg>
-                </button>
-                <button
-                  onClick={() => handleClick(4)}
-                  className="text-white mx-2 self-center"
-                >
-                  {/* <BsGrid3X3GapFill style={{fontSize: '1.1rem', color: '#fff'}}/> */}
-                  <svg
-                    width="18"
-                    height="18"
-                    viewBox="0 0 18 18"
-                    fill="#fff"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <rect width="3" height="18"></rect>
-                    <rect x="5" width="3" height="18"></rect>
-                    <rect x="10" width="3" height="18"></rect>
-                    <rect x="15" width="3" height="18"></rect>
-                  </svg>
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="p-4">
-            <div
-              className={`grid gap-4 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-${gridCol}`}
+                
+                <svg
+                width="18"
+                height="18"
+                viewBox="0 0 18 18"
+                fill="#fff"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect width="4.5" height="18"></rect>
+                <rect x="6.75" width="4.5" height="18"></rect>
+                <rect x="13.5" width="4.5" height="18"></rect>
+              </svg>
+            </button>
+            <button
+              onClick={() => handleClick(4)}
+              className="text-white mx-2 self-center"
             >
-              {product &&
-                product.map((item, i) => (
-                  <ProductCard product={item} key={i} />
-                ))}
-            </div>
+               <BsGrid3X3GapFill style={{fontSize: '1.1rem', color: '#fff'}}/> 
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 18 18"
+                fill="#fff"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect width="3" height="18"></rect>
+                <rect x="5" width="3" height="18"></rect>
+                <rect x="10" width="3" height="18"></rect>
+                <rect x="15" width="3" height="18"></rect>
+              </svg>
+            </button>
           </div>
         </div>
       </div>
-    </div>
-  );
-};
-
-export default ProductsShow;
+      <div className="p-4">
+        <div
+          className={`grid gap-4 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-${gridCol}`}
+        >
+          {product &&
+            product.map((item, i) => (
+              // <ProductCard product={item} key={i} />
+              <div>hello</div>
+            ))}
+        </div>
+      </div>
+    </div>    
+*/

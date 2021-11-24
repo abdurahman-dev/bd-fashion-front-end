@@ -37,6 +37,7 @@ const ProductSlider = ({ groupTitle, products, slidesToShow}) => {
       },
     ],
   };
+
   return (
     <div className="h-auto">
       {groupTitle && (

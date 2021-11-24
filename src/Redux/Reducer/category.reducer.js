@@ -11,6 +11,23 @@ const initialData = {
 };
 export const categoryReducer = (state = initialData, action) => {
   switch (action.type) {
+    //get categories
+    case CatConstants.GET_ALL_CATEGORY_SUBCATEGORY_REQUEST: {
+      const newState = {
+        ...state,
+        loading: true,
+      };
+      return newState;
+    }
+    case CatConstants.GET_ALL_CATEGORY_SUBCATEGORY_SUCCESS: {
+      const newState = {
+        ...state,
+        loading: false,
+        categories:action.payload.categories,
+        success:action.payload.success
+      };
+      return newState;
+    }
     //add function
     case CatConstants.ADD_CATEGORY_REQUEST: {
       const newState = {
@@ -95,7 +112,6 @@ export const categoryReducer = (state = initialData, action) => {
       }
       return newState
   }
-
     default:
       return state;
   }
