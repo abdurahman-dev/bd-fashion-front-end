@@ -3,15 +3,16 @@ import { Link } from 'react-router-dom';
 import ReactStars from 'react-stars';
 import './style.css';
 import AddToCardButton from '../AddToCardButton';
-import { storeProduct } from '../../untils/Cart/index';
 import { Modal } from 'react-bootstrap';
 import SingleProductInfo from '../../Components/SingleProductInfo';
+import {useDispatch} from 'react-redux'
+import { addToCard } from '../../Redux/Actions/addToCard.action';
 
 const ProductCard = ({ product, height }) => {
   const [hover, setHover] = useState(false);
   const [modalShow, setModalShow] = React.useState(false);
 
-
+  const dispatch=useDispatch()
 
   const discountPrice =
     Number(product.discount) > 1 &&
@@ -26,12 +27,10 @@ const ProductCard = ({ product, height }) => {
     if (pdDate > sevenDays) return true;
   };
   const handleProduct = (pd) => {
-    storeProduct(pd.id, 1);
-    console.log('add pd');
+    dispatch(addToCard(pd,1,"fromCard"))
   };
 
   const handleQuickView = (pd) => {
-    console.log(pd);
     setModalShow(true);
   };
   return (
@@ -39,8 +38,13 @@ const ProductCard = ({ product, height }) => {
       <div className="w-full rounded-md cardMain">
         <img
           src={
-            hover ? product?.productImage[1].url : product?.productImage[0].url
+            hover
+              ? product.productImage[1]
+                ? product.productImage[1]?.url
+                : product?.productImage[0].url
+              : product?.productImage[0].url
           }
+          //01827874138
           alt=""
           className={`w-96 h-72`}
           onMouseEnter={() => setHover(true)}
@@ -76,7 +80,7 @@ const ProductCard = ({ product, height }) => {
               <AddToCardButton
                 addToCard={true}
                 quickView={false}
-                onClick={() => handleProduct(product)}
+                onClick={() => handleProduct(product._id)}
               />
             )}
           </div>
@@ -85,21 +89,29 @@ const ProductCard = ({ product, height }) => {
       <Link to={`/product/${product._id}`}>
         <div className="mt-1">
           <div className="text-center flex justify-center">
-          <ReactStars count={5} value={product.ratings} size={24} color2={'#ffd700'}  edit={false}/>
+            <ReactStars
+              count={5}
+              value={product.ratings}
+              size={24}
+              color2={'#ffd700'}
+              edit={false}
+            />
           </div>
           <span className="text-md text-gray-500">
-          {product.productCategory}
+            {product.productCategory}
           </span>
           <div>
             <h3 className="text-xl text-gray-900 hover:text-gray-700">
               {product.productName}
             </h3>
           </div>
-          <div className='flex justify-between'>
-          <span className="text-lg  text-gray-900">
-            Price: <strong>${discountPrice ? discountPrice : product.productPrice}</strong>
-          </span>
-          
+          <div className="flex justify-between">
+            <span className="text-lg  text-gray-900">
+              Price:{' '}
+              <strong>
+                ${discountPrice ? discountPrice : product.productPrice}
+              </strong>
+            </span>
           </div>
         </div>
       </Link>
@@ -110,10 +122,9 @@ const ProductCard = ({ product, height }) => {
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >
-        <Modal.Header closeButton>
-  </Modal.Header>
+        <Modal.Header closeButton></Modal.Header>
         <div className="p-4">
-          <SingleProductInfo pd={product} quickView/>
+          <SingleProductInfo pd={product} quickView />
         </div>
       </Modal>
     </div>

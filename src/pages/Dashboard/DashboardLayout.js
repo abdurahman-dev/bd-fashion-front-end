@@ -10,12 +10,12 @@ const DashboardLayout = ({ children }) => {
   const [sidebar, setSidebar] = useState(false);
   const dispatch= useDispatch()
   const authLogin = useSelector((state) => state.authLoginReducer);
- 
+
   useEffect(()=>{
     if(authLogin.user.role==='admin'){
       dispatch(getInitialData())
     }
-  },[authLogin.user.role, dispatch])
+  },[authLogin.user, authLogin.user.role, dispatch])
   useEffect(() => {
     setSidebar(false);
     if (authLogin.isAuthenticated) {
@@ -24,11 +24,11 @@ const DashboardLayout = ({ children }) => {
   }, [authLogin.isAuthenticated, authLogin.user.avatar?.url]);
   
   return (
-    <div className=" h-screen">
+    <div className=" h-screen ">
       <div className="h-full">
         <div
           style={{ flex: 1 }}
-          className={`h-full bg-white ${sidebar && 'toggleSidebar'}`}
+          className={`h-full ${sidebar && 'toggleSidebar'}`}
         >
           <div className="bg-gray-500 flex justify-between items-center px-12 h-16">
             <div>
@@ -44,8 +44,8 @@ const DashboardLayout = ({ children }) => {
             </div>
           </div>
           <div
-            className="overflow-y-auto w-full p-12"
-            style={{ height: '80%' }}
+            className="overflow-y-auto w-full p-12 "
+            style={{ height: '91%' }}
           >
             {children}
           </div>

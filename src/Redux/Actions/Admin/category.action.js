@@ -2,15 +2,15 @@ import axios from '../../../helper/axios';
 import { CatConstants, CLEAR_ERRORS } from '../constants';
 
 //add function
-export const AddCategory = (name, func) => {
+export const AddCategory = (info, func) => {
   return async (dispatch) => {
     try {
       if (func === 'category') {
         dispatch({
           type: CatConstants.ADD_CATEGORY_REQUEST,
         });
-
-        const res = await axios.post('/createCategory', { name: name });
+        const res = await axios.post('/createCategory', info);
+        
         dispatch({
           type: CatConstants.ADD_CATEGORY_SUCCESS,
           payload: {
@@ -23,8 +23,7 @@ export const AddCategory = (name, func) => {
         dispatch({
           type: CatConstants.ADD_SUBCATEGORY_REQUEST,
         });
-        const res = await axios.post('/createSubcategory', { name: name });
-        console.log(res.data.subcategory);
+        const res = await axios.post('/createSubcategory', { name: info });
         dispatch({
           type: CatConstants.ADD_CATEGORY_SUCCESS,
           payload: {

@@ -7,6 +7,7 @@ import {
 } from './product.reducer';
 import { categoryReducer } from './category.reducer';
 import { adminInitialData } from '../Reducer/Admin/initialData.reducer';
+import {CardReducer} from '../Reducer/addToCard.reducer'
 
 
 const rootReducer = combineReducers({
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   addProductReducer,
   categoryReducer,
   adminInitialData,
+  CardReducer
 });
 
 export default rootReducer;

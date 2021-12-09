@@ -1,4 +1,5 @@
 // tailwind.config.js
+
 module.exports = {
   purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
   darkMode: false, // or 'media' or 'class'
@@ -18,7 +19,8 @@ module.exports = {
           "url('https://loopinfosol.in/themeforest/ekka-html-v2/ekka-html/assets/images/offer-image/offer_bg.jpg')",
       },
       height: {
-        thirtyRem: '30rem',
+        ninetyVh: '90vh',
+        sixtyVh: '50vh',
         thirtyFiveRem: '35rem',
         fortyRem: '40rem',
       },
@@ -27,5 +29,5 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/forms')],
 };

@@ -10,7 +10,7 @@ const Header = () => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    autoplay: false,
+    autoplay: true,
     arrows: false,
   };
 
@@ -20,42 +20,37 @@ const Header = () => {
         {mainBanners.map((item, i) => (
           <div>
             <div
-              className="flex space-x-4  items-center content-start mx-auto"
+              className="flex space-x-4  items-center content-start mx-auto h-80 md:h-ninetyVh bg-cover  md:bg-cover bg-no-repeat bg-center bg-scroll"
               style={{
                 backgroundImage: `url(${item.img})`,
-                backgroundPosition: 'center top',
-                backgroundSize: 'cover',
-                backgroundRepeat: 'no-repeat',
-                backgroundAttachment: 'scroll',
-                height: '600px',
               }}
             >
-              <div className="flex-1"></div>
+              <div className="flex-1 bg-blue-600"></div>
               <div
-                className={`order-${item.textSide === 'left' && 'first'} order-${
-                  item.textSide === 'right' && 'last'
-                } flex-1 `}
+                className={`order-${
+                  item.textSide === 'left' && 'first'
+                } order-${item.textSide === 'right' && 'last'} flex-1 `}
               >
                 <div
-                  className={`${item.textSide === 'left' && 'pl-20'} py-5  ${
-                    item.textSide === 'center' && 'text-center'
-                  }`}
+                  className={`${
+                    item.textSide === 'left' && 'md:pl-20'
+                  } md:py-5  ${item.textSide === 'center' && 'text-center'} `}
                 >
-                  <h5 className="text-xl font-sans font-bold">
+                  <h5 className="md:text-xl font-sans font-bold">
                     {item.subtitle}
                   </h5>
-                  <h2 className="text-5xl font-sans font-semibold">
+                  <h2 className="text-xl md:text-5xl font-sans font-semibold">
                     {item.title}
                   </h2>
-                  <p className='mb-2'>{item.description}</p>
+                  <p className="mb-2 ">{item.description}</p>
                   <Link to={item.href}>
-                  <button class="transition duration-500 text-gray-50 ease-in-out bg-blue-500 border-2 border-blue-500 px-9 py-1  hover:bg-gray-200  hover:border-gray-500 hover:text-gray-900 uppercase transform hover:translate-x-1">
-         {item.buttonTitle}
-          </button>
+                    <button class="transition duration-500 text-gray-50 ease-in-out bg-blue-500 border-2 border-blue-500 text-sm px-3 md:px-9 py-1  hover:bg-gray-200  hover:border-gray-500 hover:text-gray-900 uppercase transform hover:translate-x-1">
+                      {item.buttonTitle}
+                    </button>
                   </Link>
                 </div>
               </div>
-              <div className="flex-1"></div>
+              <div className="flex-1 hidden md:block"></div>
             </div>
           </div>
         ))}

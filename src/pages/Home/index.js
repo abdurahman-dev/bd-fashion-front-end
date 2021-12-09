@@ -3,7 +3,7 @@ import Header from '../../Sections/Header';
 import SubHeader from '../../Sections/Header/subHeader';
 import Layout from '../../Components/Layout';
 import NewProducts from '../../Sections/NewProducts';
-import MenuBanners from './HomeMenuBanners';
+// import MenuBanners from './HomeMenuBanners';
 import FeaturedProducts from '../../Sections/FeaturedProducts';
 import ChooseCategories from '../../Sections/ChooseCategories';
 import SunglassesBanner from '../../Sections/LastBanner';

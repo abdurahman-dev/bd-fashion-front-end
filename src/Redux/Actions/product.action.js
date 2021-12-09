@@ -1,5 +1,10 @@
-import { GetProductsConstants } from './constants';
+import {
+  CLEAR_ERRORS,
+  deleteProductsConstants,
+  GetProductsConstants,
+} from './constants';
 import axiosInstance from '../../helper/axios';
+import store from '../Store';
 
 export const getProducts = () => {
   return async (dispatch) => {
@@ -12,8 +17,8 @@ export const getProducts = () => {
         type: GetProductsConstants.GET_ALL_PRODUCTS_SUCCESS,
         payload: data,
       });
+     
     } catch (error) {
-      console.log(error);
       dispatch({
         type: GetProductsConstants.GET_ALL_PRODUCTS_FAIL,
         payload: error,
@@ -54,19 +59,42 @@ export const newProductAdded = (productInfo) => {
         '/admin/product/create',
         productInfo
       );
-      const pd=res.data.product
+      
       dispatch({
         type: GetProductsConstants.ADD_SINGLE_PRODUCT_SUCCESS,
         payload: {
-          success:res.data.success,
-          product:{pd}
-        }
+          success: res.data.success,
+          product: res.data.product,
+        },
       });
     } catch (err) {
       console.log(err);
       dispatch({
         type: GetProductsConstants.ADD_SINGLE_PRODUCT_FAIL,
         payload: err,
+      });
+    }
+  };
+};
+
+export const deleteSingleProduct = (id) => {
+  return async (dispatch) => {
+    try {
+      dispatch({
+        type: deleteProductsConstants.DELETE_SINGLE_PRODUCT_REQUEST,
+      });
+      const res = await axiosInstance.delete(`/admin/product/delete/${id}`);
+      dispatch({
+        type: deleteProductsConstants.DELETE_SINGLE_PRODUCT_SUCCESS,
+        payload: res.data.product,
+      });
+    } catch (err) {
+      dispatch({
+        type: deleteProductsConstants.DELETE_SINGLE_PRODUCT_FAIL,
+        payload: err,
+      });
+      dispatch({
+        type: CLEAR_ERRORS,
       });
     }
   };

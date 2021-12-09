@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import {useSelector } from 'react-redux'
 
 const cat = [
   {
-    title: 'Clotes',
+    title: 'Clothes',
     icon: 'https://loopinfosol.in/themeforest/ekka-html-v2/ekka-html/assets/images/icons/cat_1_1.png',
     img: 'https://loopinfosol.in/themeforest/ekka-html-v2/ekka-html/assets/images/cat-banner/1.jpg',
     className: 'active',
@@ -27,6 +29,13 @@ const cat = [
 export default function ChooseCategories() {
   const [selectedItem, setSelectedItem] = useState(cat[0]);
   const [isHover, setIsHover] = useState(false);
+  const [pds,setPds]=useState([])
+
+  const {products}=useSelector(state=>state.productReducer)
+ 
+  useEffect(()=>{
+    setPds(products)
+  },[products])
 
   const handleItem = (item) => {
     setSelectedItem(item);
@@ -63,7 +72,7 @@ export default function ChooseCategories() {
                     </div>
                     <div className=" ml-3 md:ml-8 text-left text-white">
                       <h4 className="p-0 m-0 text-lg font-medium">{item.title}</h4>
-                      <p>{Math.floor(Math.random() * 100)} products</p>
+                      <p>{totalProducts(item.title,pds)} products</p>
                     </div>
                   </div>
                 </button>
@@ -81,9 +90,9 @@ export default function ChooseCategories() {
               <img src={selectedItem.img} alt="" className="h-full w-full" />
               {isHover && (
                 <div className="absolute inset-0 bg-gray-800 bg-opacity-70 flex h-full w-full justify-center align-items-center">
-                  <button className="bg-blue-500 px-10 py-2 text-white">
+                  <Link to="/shop/products" className="bg-blue-500 px-10 py-2 text-white">
                     View All
-                  </button>
+                  </Link>
                 </div>
               )}
             </div>
@@ -92,4 +101,10 @@ export default function ChooseCategories() {
       </div>
     </div>
   );
+}
+
+
+const totalProducts=(catName,pds)=>{
+  const pd=pds.filter((item) => item.productCategory === catName)
+ return pd.length 
 }

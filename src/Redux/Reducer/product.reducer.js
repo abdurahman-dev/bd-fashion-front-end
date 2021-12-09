@@ -1,3 +1,4 @@
+
 import { GetProductsConstants } from "../Actions/constants"
 
 const initialState={
@@ -8,6 +9,7 @@ const initialState={
     product:{},
     success:false
 }
+
 export const productReducer=(state=initialState,action)=>{
     switch(action.type){
         case GetProductsConstants.GET_ALL_PRODUCTS_REQUEST:{
@@ -98,7 +100,7 @@ export const addProductReducer=(state=initialState,action)=>{
             const newState={
                 ...state,
                loading:false,
-               products:action.payload.product,
+               product:action.payload.product,
                success:action.payload.success,
                error:null,
             }

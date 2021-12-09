@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import CartItems from '../../../Ul/CartItems';
 import { BsFillBagCheckFill } from 'react-icons/bs';
 import './navbar.css';
-import { useSelector } from 'react-redux';
+import { useSelector, useStore } from 'react-redux';
 import { Image } from 'cloudinary-react';
+import CartItem from '../../CartItem';
 const Navbar = () => {
-  const [cart, setCart] = useState(false);
   const [sticky, setSticky] = useState(false);
   const [loggedUser, setLoggedUser] = useState(false);
   const [cartItems, setCartItems] = useState([]);
   const [LoggedUserInfo, setLoggedUserInfo] = useState({});
-  const authLogin = useSelector(state => state.authLoginReducer)
+  const authLogin = useSelector((state) => state.authLoginReducer);
+  const authReg = useSelector((state) => state.authRegisterReducer);
+  const { cardItem } = useSelector((state) => state.CardReducer);
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const store = useStore();
   useEffect(() => {
     window.addEventListener('scroll', () => {
       if (window.scrollY > 100) {
@@ -20,47 +24,47 @@ const Navbar = () => {
         setSticky(false);
       }
     });
-
-    const pd = localStorage.getItem('cartItem') || '{}';
-    const pt = Object.keys(JSON.parse(pd));
-    setCartItems(pt);
   }, []);
 
   useEffect(() => {
-    if(authLogin.isAuthenticated){
-      setLoggedUserInfo(authLogin.user.avatar?.url)
-      setLoggedUser(true)
+    const localCart = localStorage.getItem('cart');
+    if (localCart) {
+      setCartItems(Object.keys(cardItem));
+    } else {
+      setCartItems([]);
     }
-  }, [authLogin,setLoggedUser])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [store.getState().CardReducer, cardItem]);
 
+  useEffect(() => {
+    if (authLogin.isAuthenticated || authReg.isAuthenticated) {
+      setLoggedUserInfo(
+        authLogin.user?.avatar?.url || authReg.user?.avatar?.url
+      );
+      setLoggedUser(true);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [authLogin, setLoggedUser, store.getState().authRegisterReducer]);
   const handleCart = () => {
-    setCart(!cart);
+    setShow(true);
   };
-
-// useEffect(()=>{
-//   const token=document.cookie
-//   console.log(token);
-//   if(token){
-//     setLoggedUser(true)
-//   }
-// },[setLoggedUser])
-
-
-  let admin = false
-  if(authLogin.user?.role==='admin'){
-    admin = true
+  let admin = false;
+  if (authLogin.user?.role === 'admin') {
+    admin = true;
   }
 
   return (
-    <div className={`py-2 h-20  menubar ${sticky ? 'bgSticky' : 'bgNotSticky'}`}>
+    <div className={`py-2  menubar ${sticky ? 'bgSticky' : 'bgNotSticky'}`}>
       <div className="container mx-auto  h-full">
         <div className="flex justify-between items-center h-full">
           <div>
             <Link to="/">
-              <h1 className="text-2xl md:text-3xl font-medium text-black">BD Fashion</h1>
+              <h1 className="text-2xl md:text-3xl font-medium text-black">
+                BD Fashion
+              </h1>
             </Link>
           </div>
-          
+
           <div>
             <ul className="flex">
               <button onClick={handleCart} className="">
@@ -78,27 +82,26 @@ const Navbar = () => {
                 <Link to="/adminDashboard">
                   {' '}
                   <Image
-                cloudName="dpqv2divs"
-                publicId={LoggedUserInfo}
-                className="rounded-full w-10 h-10"
-              />
+                    cloudName="dpqv2divs"
+                    publicId={LoggedUserInfo}
+                    className="rounded-full w-10 h-10"
+                  />
                 </Link>
               ) : (
                 <Link to="/userProductStatus">
                   {' '}
                   <Image
-                cloudName="dpqv2divs"
-                publicId={LoggedUserInfo}
-                className="rounded-full w-10 h-10"
-              />
+                    cloudName="dpqv2divs"
+                    publicId={LoggedUserInfo}
+                    className="rounded-full w-10 h-10"
+                  />
                 </Link>
-              )
-              }
+              )}
             </ul>
           </div>
         </div>
       </div>
-      {<CartItems setCart={setCart} cart={cart} />}
+      <CartItem show={show} handleClose={handleClose} placement={'end'} />
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import React from 'react';
 import Slider from 'react-slick';
+import NoProduct from '../../Components/NoProduct';
 
 import ProductCard from '../ProductCard';
 
@@ -54,9 +55,8 @@ const ProductSlider = ({ groupTitle, products, slidesToShow}) => {
             <ProductCard product={product} key={i}/>
           ))}
         </Slider>
-      </div> : <h2 className="text-center">
-        No Products
-      </h2>
+      </div> : 
+       <NoProduct/>
       }
     </div>
   );

@@ -3,42 +3,37 @@ import toast from 'react-hot-toast';
 import { useSelector } from 'react-redux';
 import Axios from 'axios';
 import { Image } from 'cloudinary-react';
-import loadingImg from '../../images/load-loading.gif';
+import { Spinner } from 'react-bootstrap';
 
 const AddProductModalInfo = ({ productInfo, addProduct }) => {
   const [imgUploadSuccess, setImgUploadSuccess] = useState(false);
   const {
     setVisible,
-    setProductName,
-    productName,
-    productPrice,
-    productImg,
-    setProductPrice,
-    setProductImg,
-    productStock,
-    setProductStock,
-    productSellerName,
-    setProductSellerName,
-    productPriceDiscount,
-    setProductPriceDiscount,
-    productDescription,
-    setProductDescription,
-    productCategory,
-    setProductCategory,
+    productName, setProductName,
+    productPrice, setProductPrice,
+    productImg, setProductImg,
+    productStock,setProductStock,
+    productSellerName,setProductSellerName,
+    productPriceDiscount,setProductPriceDiscount,
+    productDescription, setProductDescription,
+    productCategory,setProductCategory,
+    productSubcategory,setProductSubcategory,
+    category,
+    subcategory,
   } = productInfo;
 
-  const state = useSelector((state) => state.addProductReducer);
+  // const state = useSelector((state) => state.addProductReducer);
 
-  useEffect(() => {
-    if (state.error) {
-      const errorMessage = state.error.response.data.error;
-      const msg = errorMessage.split(',');
-      toast.error(msg[0], {
-        duration: 4000,
-        position: 'top-right',
-      });
-    }
-  }, [state.error]);
+  // useEffect(() => {
+  //   if (state.error) {
+  //     const errorMessage = state.error.response.data.error;
+  //     const msg = errorMessage.split(',');
+  //     toast.error(msg[0], {
+  //       duration: 4000,
+  //       position: 'top-right',
+  //     });
+  //   }
+  // }, [state.error]);
 
   const handleProductImage = async (e) => {
     setImgUploadSuccess(true);
@@ -53,13 +48,7 @@ const AddProductModalInfo = ({ productInfo, addProduct }) => {
     setProductImg([...productImg, result.data.url]);
   };
   return (
-    <div>
-      <div className="auto p-2 bg-gray-500">
-        <h2 className="text-2xl md:text-4xl font-bold text-white">
-          Add Product
-        </h2>
-      </div>
-      <div className="p-4">
+    <div className="p-4">
         <div>
           <label className="text-xl font-medium">
             Product Name <span className="text-red-600"> *</span>{' '}
@@ -73,7 +62,7 @@ const AddProductModalInfo = ({ productInfo, addProduct }) => {
             className="mt-2 border-2 border-gray-700 w-4/5 md:w-3/5 h-10 rounded-md px-2  focus:outline-none focus:ring focus:ring-gray-500 focus:ring-opacity-50 focus:border-gray-400"
           />
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-2">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mt-2">
           <div>
             <label className="text-md font-medium">
               Product Price <span className="text-red-600"> *</span>{' '}
@@ -123,19 +112,32 @@ const AddProductModalInfo = ({ productInfo, addProduct }) => {
             </label>{' '}
             <br />
             <select
-              value={productCategory}
+            value={productCategory}
               onChange={(e) => setProductCategory(e.target.value)}
               className="mt-2 border-2 border-gray-700 w-4/5 rounded-md px-2  focus:outline-none focus:ring focus:ring-gray-500 focus:ring-opacity-50 focus:border-gray-400"
             >
-              <option value="Electronics">Electronics</option>
-              <option value="Cameras">Cameras</option>
-              <option value="Laptop">Laptop</option>
-              <option value="Accessories">Accessories</option>
-              <option value="Beauty/Health">Beauty/Health</option>
-              <option value="Clothes/Shoes">Clothes/Shoes</option>
-              <option value="Books">Books</option>
-              <option value="Sports">Sports</option>
-              <option value="outdoor">Outdoor</option>
+               <option >Select Category</option>
+              {
+                category.map((item,i)=> {
+                  return ( <option key={i} value={item.name}>{item.name}</option>)
+                })
+              }
+            </select>
+          </div>
+          <div>
+            <label className="text-md font-medium">
+              Product Subcategory<span className="text-red-600"> *</span>
+            </label>{' '}
+            <br />
+            <select
+              value={productSubcategory}
+              onChange={(e) => setProductSubcategory(e.target.value)}
+              className="mt-2 border-2 border-gray-700 w-4/5 rounded-md px-2  focus:outline-none focus:ring focus:ring-gray-500 focus:ring-opacity-50 focus:border-gray-400"
+            >
+              <option >Select Subcategory</option>
+              {subcategory.map((item,i)=> {
+                return <option key={i} value={item.name}>{item.name}</option>
+              })}
             </select>
           </div>
           <div>
@@ -190,7 +192,9 @@ const AddProductModalInfo = ({ productInfo, addProduct }) => {
             ))}
             <div>
               {imgUploadSuccess && (
-                <img src={loadingImg} className="w-28 h-28" alt="loading img" />
+               <Spinner animation="border" role="status">
+               <span className="visually-hidden">Loading...</span>
+             </Spinner>
               )}
             </div>
           </div>
@@ -216,7 +220,6 @@ const AddProductModalInfo = ({ productInfo, addProduct }) => {
           </div>
         </div>
       </div>
-    </div>
   );
 };
 

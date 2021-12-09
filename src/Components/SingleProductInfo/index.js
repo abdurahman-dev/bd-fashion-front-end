@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, {useState } from 'react';
 import Slider from 'react-slick';
 import { BsTagFill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import ReactStars from 'react-stars';
-import { storeProduct } from '../../untils/Cart';
 import './style.css';
+import { useDispatch } from 'react-redux';
+import { addToCard } from '../../Redux/Actions/addToCard.action';
+import { Toaster } from 'react-hot-toast';
+import { requiredErrorHandle } from '../../helper/toastNotification';
 
 export default function SingleProductInfo({ pd,quickView}) {
   const [qntCount, setQntCount] = useState(1);
-  useEffect(() => {
-    setQntCount(1);
-  }, []);
+  const dispatch=useDispatch()
   const {
     productName,
     _id,
@@ -44,30 +45,31 @@ export default function SingleProductInfo({ pd,quickView}) {
   const discountPrice =
     Number(discount) > 0 && ((Number(discount) / 100) * productPrice).toFixed();
 
-  const handleQnty = (action) => {
+  const handleQnty = (action,pd) => {
     if (action === 'sub') {
       if (qntCount <= 1) {
-        alert('quantity must be greater then one');
-        return;
+        
+        return requiredErrorHandle('Quantity must be greater then one');
       } else {
         setQntCount(qntCount - 1);
+      //   dispatch(addToCard(pd,qntCount-1))
       }
     }
     if (action === 'add') {
-      console.log('add');
       if (qntCount >= productStock) {
-        alert(`There are ${productStock} product in Stock`);
-        return;
+        return requiredErrorHandle(`There are ${productStock} product in Stock`);;
       } else {
         setQntCount(qntCount + 1);
+        // dispatch(addToCard(pd,qntCount+1))
       }
     }
   };
-  const handleProductAddToCard = (id) => {
-    storeProduct(id, qntCount);
+  const handleProductAddToCard = (pd) => {
+      dispatch(addToCard(pd,qntCount))
   };
   return (
     <div className="grid gap-4 grid-cols-1 md:grid-cols-2">
+       <Toaster/>
       <div className="justify-self-center" style={{ width: '94%' }}>
         <Slider {...settings}>
           {productImage?.map((item, i) => (
@@ -131,7 +133,7 @@ export default function SingleProductInfo({ pd,quickView}) {
           <span>
             {' '}
             Category :{' '}
-            <Link to="/" className="underline">
+            <Link to="/shop/products" className="underline">
               {productCategory}
             </Link>{' '}
           </span>
@@ -140,14 +142,14 @@ export default function SingleProductInfo({ pd,quickView}) {
           Quantity
           <div className="flex mt-2 justify-between text-center items-center w-full h-full">
             <button
-              onClick={() => handleQnty('sub')}
+              onClick={() => handleQnty('sub',_id)}
               className="border-2  flex-1"
             >
               -
             </button>
             <div className="border-2  flex-1">{qntCount}</div>
             <button
-              onClick={() => handleQnty('add')}
+              onClick={() => handleQnty('add',_id)}
               className="border-2 flex-1"
             >
               +

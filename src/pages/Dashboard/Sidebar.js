@@ -1,14 +1,30 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import { BsXLg } from 'react-icons/bs';
 import { useSelector } from 'react-redux';
 
 const Sidebar = ({onClick,sidebar}) => {
-  const authLogin = useSelector(state => state.authLoginReducer)
+  const {user} = useSelector(state => state.authLoginReducer)
+ 
   let admin = false
-  if(authLogin.user?.role==='admin'){
+  if(user?.role==='admin'){
     admin = true
   }
+  // useEffect(()=>{
+  //   if(error){
+  //     setLoggedUser(false)
+  //   }
+  // },[error])
+
+  // const handleLogOut=()=>{
+  //   localStorage.removeItem('token');
+  //   setLoggedUser(false)
+  // }
+
+  // if(!loggedUser){
+  //   return <Redirect to="/" />
+  // }
+// console.log(loggedUser);
   return (
     <div className={`${sidebar ? 'sidebarActive' : 'sidebarDeactivate'} sidebar`}>
       <div className={`${sidebar ? 'sidebarItemActive' : 'sidebarITemDeactivate'} sidebarITem`}>
@@ -29,9 +45,9 @@ const Sidebar = ({onClick,sidebar}) => {
         </ul>
       </div>
       <div>
-        <Link to={'/'}>
-          <p className="bg-gray-500 text-white text-xl font-medium mb-8 py-4"> Log Out</p>
-        </Link>
+        <>
+          <button  className="bg-gray-500 text-white text-xl font-medium mb-8 px-4 py-2 rounded-xl hover:bg-blue-500"> Log Out</button>
+        </>
       </div>
     </div>
     </div>
@@ -62,6 +78,10 @@ const adminMenu = [
   {
     title: 'Users',
     href: '/manageUsers',
+  },
+  {
+    title: 'Profile',
+    href: '/userProfile',
   },
   {
     title: 'Category',

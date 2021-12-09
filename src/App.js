@@ -11,7 +11,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getProducts } from './Redux/Actions/product.action';
 import ProductControl from './pages/Dashboard/AdminDashboard/product/ProductControl';
 import OrderControl from './pages/Dashboard/AdminDashboard/OrderControl';
-import UserControl from './pages/Dashboard/AdminDashboard/UserControl';
 import UserDashboard from './pages/Dashboard/UserDashboard/UserDashboard';
 import HomeAdmin from './pages/Dashboard/AdminDashboard/HomeAdmin';
 import ProductOrder from './pages/Dashboard/UserDashboard/ProductOrder';
@@ -20,6 +19,10 @@ import PrivateRoute from './untils/PrivateRoute/PrivateRoute';
 import { isLoggedIn } from './Redux/Actions/auth.action';
 import CategoryControl from './pages/Dashboard/AdminDashboard/Category/CategoryControl'
 import ScrollToTop from './untils/ScrollTop';
+import UserControl from './pages/Dashboard/AdminDashboard/Users/UserControl';
+import { updateAddToCard } from './Redux/Actions/addToCard.action';
+import { Toaster } from 'react-hot-toast';
+import ShoppingCard from './pages/ShoppingCard';
 function App() {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.authReducer);
@@ -29,8 +32,14 @@ function App() {
       dispatch(isLoggedIn());
     }
   }, [dispatch,auth?.isAuthenticated]);
+
+    useEffect(()=>{
+      dispatch(updateAddToCard())
+    },[dispatch])
+
   return (
     <>
+    <Toaster/>
       <Router>
         <ScrollToTop/>
         <Switch>
@@ -51,6 +60,7 @@ function App() {
           </PrivateRoute>
           <Route path="/manageOrders" component={OrderControl} />
           <Route path="/manageUsers" component={UserControl} />
+          <Route path="/shoppingCard" component={ShoppingCard} />
           {/** user dashboard */}
           <Route path="/userProductStatus" component={UserDashboard} />
           <Route path="/userProductOrderList" component={ProductOrder} />

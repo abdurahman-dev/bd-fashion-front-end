@@ -40,11 +40,11 @@ const CollectionsGrid = () => {
           cat.reverse().map((item,i)=>{
             return(
               <div key={i} className="pt-5 cursor-pointer ">
-            <Link to={``}>
+            <Link to={`/shop/${item.name}`}>
               <div className='text-black'>
-                <div className="bg-gray-300 p-3 hover:shadow-2xl transition duration-300 ease-in-out">
+                <div className="bg-gray-300 rounded p-3 hover:shadow-2xl transition duration-300 ease-in-out">
                   <img
-                    src={item.imageUrl}
+                    src={item.image.url}
                     alt=""
                     className="object-fill rounded h-60 w-full"
                   />

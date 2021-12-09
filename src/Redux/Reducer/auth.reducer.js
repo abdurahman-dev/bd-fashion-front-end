@@ -1,4 +1,4 @@
-import { AuthLoginConstants, AuthRegisterConstants } from '../Actions/constants';
+import { AuthLoginConstants, AuthRegisterConstants, AuthUpdateConstants, CLEAR_ERRORS } from '../Actions/constants';
 
 const initialData = {
   loading: false,
@@ -35,7 +35,32 @@ export const authLoginReducer = (state = initialData, action) => {
       };
       return newState;
     }
+    case AuthUpdateConstants.AUTH_UPDATE_REQUEST: {
+      const newState = {
+        ...state,
+        loading: true,
+      };
+      return newState;
+    }
+    case AuthUpdateConstants.AUTH_UPDATE_SUCCESS: {
+      const newState = {
+        ...state,
+        loading: false,
+        isAuthenticated: true,
+        user: action.payload
+      };
+      return newState;
+    }
+    
+    //error handling
     case AuthLoginConstants.AUTH_CLEAR_ERRORS: {
+      const newState = {
+        ...state,
+        error: null,
+      };
+      return newState;
+    }
+    case CLEAR_ERRORS: {
       const newState = {
         ...state,
         error: null,

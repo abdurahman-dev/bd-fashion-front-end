@@ -10,16 +10,18 @@ import {
   priceRangeFilter,
   productShowCase,
   searchProductHandle,
-} from './productHelper';
+} from './productFilterHelper';
 import 'react-input-range/lib/css/index.css';
+import { Link } from 'react-router-dom';
 
 const ProductsShow = () => {
-  // const { catTitle } = useParams();
+  // let { catTitle } = useParams();
+
   const [allProduct, setAllProduct] = useState();
   const [product, setProduct] = useState([]);
   const [val, setVal] = useState({ min: 500, max: 2500 });
-  // const [gridCol, setGridCol] = useState(4);
   const [category, setCategory] = useState([]);
+  const [catFilter, setCatFilter] = useState('');
 
   const dispatch = useDispatch();
 
@@ -37,28 +39,25 @@ const ProductsShow = () => {
     if (categories) {
       setCategory(categories);
     }
-  }, [categories, product]);
-
-  // const handleClick = (count) => {
-  //   setGridCol(count);
-  // };
+  }, [categories]);
 
   const handlePdOfCategory = (title) => {
     const pd = allProduct.filter((item) => item.productCategory === title);
     return pd.length;
   };
-
   const handleFilterClear = () => {
+    setCatFilter('')
     setProduct(allProduct);
     setVal({
-      min: 500, max: 2500
-    })
+      min: 500,
+      max: 2500,
+    });
   };
   return (
     <>
-      <div className="bg-gray-900 h-32"></div>
+      {shopHeader(catFilter,handleFilterClear)}
       <div className=" bg-gray-100 py-12 px-4">
-        <div className=" w-1/6 h-10 mb-4">
+        <div className=" h-10 md:w-1/6 md:h-10 mb-4 ">
           <input
             type="text"
             onChange={(e) => {
@@ -80,9 +79,12 @@ const ProductsShow = () => {
                     {category.length > 0 &&
                       category.map((item, i) => (
                         <li
-                          onClick={() =>
-                            setProduct(handleFilterByCategory(allProduct, item))
-                          }
+                          onClick={() => {
+                            setCatFilter(item.name)
+                            setProduct(
+                              handleFilterByCategory(allProduct, item)
+                            );
+                          }}
                           key={i}
                           className="h-12 transition duration-300 ease-in-out rounded mb-1 border-2 border-gray-200 flex items-center justify-between px-2 cursor-pointer hover:border-blue-600 hover:text-blue-600 hover:shadow-sm "
                         >
@@ -115,7 +117,6 @@ const ProductsShow = () => {
                         });
                       }}
                     />
-                    
                   </div>
                   <div className="mt-5 flex justify-center">
                     <button
@@ -140,7 +141,7 @@ const ProductsShow = () => {
                       onChange={(e) => {
                         setProduct(handleShortChange(e.target.value, product));
                       }}
-                      className="outline-none cursor-pointer"
+                      className="outline-none cursor-pointer focus:outline-none border-0 focus:ring-0"
                     >
                       short by
                       <option value="default">Featured</option>
@@ -153,40 +154,25 @@ const ProductsShow = () => {
                   </div>
                 </div>
                 <div className=" items-center hidden md:flex">
+                
                   <button
-                    // onClick={() => handleClick(2)}
-                    className="text-white mx-2"
-                  >
-                    <svg
-                      width="18"
-                      height="18"
-                      viewBox="0 0 18 18"
-                      fill="#fff"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <rect width="7.5" height="18"></rect>
-                      <rect x="10.5" width="7.5" height="18"></rect>
-                    </svg>
-                  </button>
-                  <button
-                    // onClick={() => handleClick(3)}
-                    className="text-white mx-2"
-                  >
-                    <svg
-                      width="18"
-                      height="18"
-                      viewBox="0 0 18 18"
-                      fill="#fff"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <rect width="4.5" height="18"></rect>
-                      <rect x="6.75" width="4.5" height="18"></rect>
-                      <rect x="13.5" width="4.5" height="18"></rect>
-                    </svg>
-                  </button>
-                  <button
-                    // onClick={() => handleClick(4)}
                     className="text-white mx-2 self-center"
+                  >
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 18 18"
+                      fill="#fff"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <rect width="3" height="18"></rect>
+                      <rect x="5" width="3" height="18"></rect>
+                      <rect x="10" width="3" height="18"></rect>
+                      <rect x="15" width="3" height="18"></rect>
+                    </svg>
+                  </button>
+                  <button
+                    className="text-white mx-2 self-center transform rotate-90"
                   >
                     <svg
                       width="18"
@@ -213,3 +199,35 @@ const ProductsShow = () => {
 };
 
 export default ProductsShow;
+
+const shopHeader = (catFilter,handleFilterClear) => {
+  return (
+    <div className="bg-gray-300">
+      <div className="container mx-auto">
+        <div className="flex items-center h-auto py-4  md:h-48 w-full">
+          <div className="flex justify-between w-full items-center h-full">
+            <div>
+              <h2 className="text-5xl font-semibold">Shop</h2>
+              <div className="mt-4">
+                <Link to="/" className="text-gray-600 hover:text-black">
+                  Home
+                </Link>{' '}
+                {'>'} Shop
+              </div>
+            </div>
+            <div>
+              {catFilter && (
+                <div className="bg-gray-50 text-2xl  px-4 py-1 group rounded-xl font-bold hover:shadow-lg transform hover:-translate-y-2 transition duration-300 ease-in-out">
+                  <span onClick={handleFilterClear} className="pr-2 text-gray-50 text-2xl group-hover:text-gray-900 cursor-pointer">
+                    ×
+                  </span>
+                  {catFilter}
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
