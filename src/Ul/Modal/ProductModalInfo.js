@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import toast from 'react-hot-toast';
-import { useSelector } from 'react-redux';
+import React, {  useState } from 'react';
 import Axios from 'axios';
 import { Image } from 'cloudinary-react';
 import { Spinner } from 'react-bootstrap';

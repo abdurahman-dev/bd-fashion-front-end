@@ -8,7 +8,7 @@ const New4Products = () => {
   const newProduct = pds.slice(-4).reverse();
   return (
     <div className="flex flex-col-reverse md:flex-row justify-between md:gap-4">
-      <div className="">
+      <div className=" w-full">
         <div className="rounded-lg border my-4 p-3 shadow-sm border-gray-500 ">
           <p className="text-2xl font-semibold  mb-2">New Products</p>
           {newProduct &&

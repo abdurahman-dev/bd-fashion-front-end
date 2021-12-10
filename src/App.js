@@ -47,6 +47,7 @@ function App() {
           <Route path="/collections" component={AllCollection} />
           <Route path="/login" component={LogIn} />
           <Route path="/dashboard" component={DashboardLayout} />
+          <Route path="/shoppingCard" component={ShoppingCard} />
           
           {/** admin dashboard*/}
           <PrivateRoute path="/adminDashboard">
@@ -60,7 +61,7 @@ function App() {
           </PrivateRoute>
           <Route path="/manageOrders" component={OrderControl} />
           <Route path="/manageUsers" component={UserControl} />
-          <Route path="/shoppingCard" component={ShoppingCard} />
+          
           {/** user dashboard */}
           <Route path="/userProductStatus" component={UserDashboard} />
           <Route path="/userProductOrderList" component={ProductOrder} />

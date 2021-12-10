@@ -140,21 +140,24 @@ export default function SingleProductInfo({ pd,quickView}) {
         </div>
         <div className=" w-2/5 my-4">
           Quantity
-          <div className="flex mt-2 justify-between text-center items-center w-full h-full">
-            <button
-              onClick={() => handleQnty('sub',_id)}
-              className="border-2  flex-1"
-            >
-              -
-            </button>
-            <div className="border-2  flex-1">{qntCount}</div>
-            <button
-              onClick={() => handleQnty('add',_id)}
-              className="border-2 flex-1"
-            >
-              +
-            </button>
-          </div>
+          
+          <div className="flex  justify-between items-center p-2 ">
+                          <div>
+                            <button
+                           onClick={() => handleQnty('add',_id)}
+                              className="w-5 h-10 rounded-full bg-blue-600 text-gray-50"
+                            >
+                              +
+                            </button>
+                            <input type="text" readOnly value={qntCount} className="w-12 text-center mx-2 rounded-md outline-none ring-0  border-0 focus:ring-0 "/>
+                            <button
+                             onClick={() => handleQnty('sub',_id)}
+                              className="w-5 h-10 rounded-full bg-blue-600 text-gray-50"
+                            >
+                              -
+                            </button>
+                          </div>
+                        </div>
         </div>
 
         {Number(productStock) ? (

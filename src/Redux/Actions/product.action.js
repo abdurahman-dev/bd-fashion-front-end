@@ -4,7 +4,7 @@ import {
   GetProductsConstants,
 } from './constants';
 import axiosInstance from '../../helper/axios';
-import store from '../Store';
+
 
 export const getProducts = () => {
   return async (dispatch) => {

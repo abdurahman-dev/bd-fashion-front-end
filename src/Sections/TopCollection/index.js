@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import ProductSlider from '../../Ul/GroupProductSlider';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import NoProduct from '../../Components/NoProduct';
 
 const TopCollection = () => {
   const [showProduct, setShowProduct] = useState([]);
@@ -50,7 +49,7 @@ const TopCollection = () => {
         
         <div className='flex justify-center mt-4'>
         <Link to="/shop/products " >
-            <button class="transition  duration-500 ease-in-out bg-blue-500 border-2 text-gray-50 border-blue-500 px-9 py-1  hover:bg-gray-200 hover:border-gray-500 hover:text-gray-900 uppercase transform hover:translate-y-1 hover:scale-110 ">
+            <button className="transition  duration-500 ease-in-out bg-blue-500 border-2 text-gray-50 border-blue-500 px-9 py-1  hover:bg-gray-200 hover:border-gray-500 hover:text-gray-900 uppercase transform hover:translate-y-1 hover:scale-110 ">
               See Shop
             </button>
           </Link>

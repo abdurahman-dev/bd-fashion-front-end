@@ -190,9 +190,7 @@ function ProfileInformation(userPersonalInfo, handleStateChange, handleSave) {
                   >
                     Country
                   </label>
-                  {
-                    console.log(userPersonalInfo.userCountry)
-                  }
+                 
                   <select
                     id="country"
                     name="userCountry"
@@ -324,9 +322,7 @@ function personalInformation(handleStateChange, handleSave, userShippingInfo) {
                   >
                     Country
                   </label>
-                  {
-                      console.log(userShippingInfo?.userShippingCountry)
-                    }
+                 
                   <select
                     id="country"
                     name="userShippingCountry"

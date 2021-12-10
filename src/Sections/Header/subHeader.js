@@ -14,13 +14,13 @@ const SubHeader = () => {
           </p>
 
           <Link to="/collections">
-            <button class="transition duration-500 ease-in-out bg-blue-500 border-2 text-gray-50 border-blue-500 px-9 py-1  hover:bg-gray-200 hover:border-gray-500 hover:text-gray-900 uppercase transform hover:translate-y-1 hover:scale-110 ">
+            <button className="transition duration-500 ease-in-out bg-blue-500 border-2 text-gray-50 border-blue-500 px-9 py-1  hover:bg-gray-200 hover:border-gray-500 hover:text-gray-900 uppercase transform hover:translate-y-1 hover:scale-110 ">
               All Collection
             </button>
           </Link>
         </div>
         {subHeaderBanners.map((item, i) => (
-          <Link to={`/shop/${'Clothes'}`}>
+          <Link to={`/shop/${'Clothes'}`} key={Math.random()}>
             <div className="cursor-pointer">
               <img
                 src={item.image}

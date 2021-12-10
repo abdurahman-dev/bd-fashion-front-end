@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Offcanvas, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { BsFillXCircleFill, BsFillBagCheckFill } from 'react-icons/bs';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { addToCard, removeFromCard } from '../Redux/Actions/addToCard.action';
+import {
+  handleDeIncPdQty,
+  handleIncPdQty,
+  handlePdRemove,
+} from '../helper/cardHandle';
 import store from '../Redux/Store';
 
 const CartItem = ({ show, handleClose, ...props }) => {
@@ -11,7 +15,6 @@ const CartItem = ({ show, handleClose, ...props }) => {
   const [pds, setPds] = useState([]);
   const { cardItem } = useSelector((state) => state.CardReducer);
   const { products } = useSelector((state) => state.productReducer);
-  const dispatch = useDispatch();
 
   useEffect(() => {
     if (products) {
@@ -36,28 +39,13 @@ const CartItem = ({ show, handleClose, ...props }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cardItem, pds, show, store.getState().CardReducer]);
 
-  const handleIncPdQty = (item, qty) => {
-    dispatch(addToCard(item._id, qty + 1, 'fromCart'));
-  };
-  const handleDeIncPdQty = (item, qty) => {
-    if (qty - 1 < 1) {
-      dispatch(removeFromCard(item._id));
-      handlePdRemove(item._id);
-    } else {
-      dispatch(addToCard(item._id, qty - 1, 'fromCart'));
-    }
-  };
-  const handlePdRemove = (id) => {
-    setCartProducts(cartProducts.filter((item) => item._id !== id));
-  };
-  let total=0
-  if(cartProducts?.length > 0){
-    total=0
-    cartProducts.forEach(item => {
-      total += item?.productPrice*item?.qnt
+  let total = 0;
+  if (cartProducts?.length > 0) {
+    cartProducts.forEach((item) => {
+      total += item?.productPrice * item?.qnt;
     });
-    
   }
+
   return (
     <Offcanvas
       show={show}
@@ -78,7 +66,7 @@ const CartItem = ({ show, handleClose, ...props }) => {
 
       <Offcanvas.Body>
         <div className="flex-col justify-between">
-          <div className=" overflow-y-auto " style={{ height: '78vh' }}>
+          <div className=" overflow-y-auto " style={{ height: '75vh' }}>
             {cartProducts.length > 0
               ? cartProducts.map((item) => (
                   <OverlayTrigger
@@ -91,7 +79,7 @@ const CartItem = ({ show, handleClose, ...props }) => {
                         <div>
                           <button
                             onClick={() => {
-                              handleIncPdQty(item, item?.qnt);
+                              handleIncPdQty(item, item.qnt);
                             }}
                             className="w-5 h-10 rounded-full bg-blue-600 text-gray-50"
                           >
@@ -104,7 +92,9 @@ const CartItem = ({ show, handleClose, ...props }) => {
                             className="w-12 text-center mx-2 rounded-md outline-none ring-0  border-0 focus:ring-0 "
                           />
                           <button
-                            onClick={() => handleDeIncPdQty(item, item?.qnt)}
+                            onClick={() => {
+                              handleDeIncPdQty(item, item.qnt,cartProducts);
+                            }}
                             className="w-5 h-10 rounded-full bg-blue-600 text-gray-50"
                           >
                             -
@@ -120,14 +110,16 @@ const CartItem = ({ show, handleClose, ...props }) => {
                           />
                         </div>
                         <div>
-                          $ <b>{item?.qnt}</b>×<strong>{item?.productPrice}</strong>{' '}
+                          $ <b>{item?.qnt}</b>×
+                          <strong>{item?.productPrice}</strong>{' '}
                         </div>
                         <div>
                           {' '}
                           <button
                             onClick={() => {
-                              dispatch(removeFromCard(item._id));
-                              handlePdRemove(item._id);
+                              setCartProducts(
+                                handlePdRemove(item._id,cartProducts)
+                              );
                             }}
                           >
                             <BsFillXCircleFill className="text-xl text-gray-600 hover:text-gray-900" />
@@ -141,30 +133,29 @@ const CartItem = ({ show, handleClose, ...props }) => {
           </div>
           {cartProducts.length > 0 && (
             <>
-            <div className="text-right">
-              <strong>Total =  {total}</strong>
-            </div>
-            <div className="flex justify-between">
-              <Link
-                to="/shoppingCard"
-                className="px-4 py-1 bg-blue-50 rounded-md text-blue-700"
-              >
-                See Item
-              </Link>
-              <Link
-                to="/"
-                className="px-4 py-1 bg-blue-50 rounded-md text-blue-700"
-              >
-                CheckOut
-              </Link>
-            </div>
-            
+              
+              <div className="flex justify-between pb-3">
+              <strong className='text-gray-600'>Sub-Total </strong>
+              <strong> {total}</strong>
+              </div>
+              <div className="flex justify-between">
+                <Link
+                  to="/shoppingCard"
+                  className="px-4 py-1 bg-blue-50 rounded-md text-blue-700"
+                >
+                View Cart
+                </Link>
+                <Link
+                  to="/"
+                  className="px-4 py-1 bg-blue-50 rounded-md text-blue-700"
+                >
+                  CheckOut
+                </Link>
+              </div>
             </>
           )}
-
         </div>
       </Offcanvas.Body>
-     
     </Offcanvas>
   );
 };

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import NoProduct from '../../Components/NoProduct';
 import ProductCard from '../../Ul/ProductCard';
 
 const NewProducts = () => {
@@ -29,7 +30,7 @@ const NewProducts = () => {
                   )
                 })
               }
-            </div>: <div><h4>No Product</h4></div>
+            </div>: <NoProduct/>
           }
         </div>
       </div>

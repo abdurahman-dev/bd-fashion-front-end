@@ -17,8 +17,8 @@ const Header = () => {
   return (
     <div>
       <Slider {...settings}>
-        {mainBanners.map((item, i) => (
-          <div>
+        {mainBanners.map((item) => (
+          <div key={Math.random()}>
             <div
               className="flex space-x-4  items-center content-start mx-auto h-80 md:h-ninetyVh bg-cover  md:bg-cover bg-no-repeat bg-center bg-scroll"
               style={{
@@ -44,7 +44,7 @@ const Header = () => {
                   </h2>
                   <p className="mb-2 ">{item.description}</p>
                   <Link to={item.href}>
-                    <button class="transition duration-500 text-gray-50 ease-in-out bg-blue-500 border-2 border-blue-500 text-sm px-3 md:px-9 py-1  hover:bg-gray-200  hover:border-gray-500 hover:text-gray-900 uppercase transform hover:translate-x-1">
+                    <button className="transition duration-500 text-gray-50 ease-in-out bg-blue-500 border-2 border-blue-500 text-sm px-3 md:px-9 py-1  hover:bg-gray-200  hover:border-gray-500 hover:text-gray-900 uppercase transform hover:translate-x-1">
                       {item.buttonTitle}
                     </button>
                   </Link>

@@ -21,6 +21,7 @@ export const addToCard = (id,quantity,from) => {
  
 export const removeFromCard=(id)=>{
   return async dispatch=>{
+    
     const { cardItem } = store.getState().CardReducer;
     delete cardItem[id]
     localStorage.setItem('cart', JSON.stringify(cardItem));

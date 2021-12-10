@@ -16,9 +16,9 @@ const FooterCol = ({ item, title }) => {
       </div>
       <div>
         <ul>
-          {item.map((item, i) => (
-            <li onClick={scrollControl} className='hover:underline'>
-              <Link to="/Collections">{item.label}</Link>
+          {item.map((item) => (
+            <li key={Math.random()} onClick={scrollControl} className='hover:underline'>
+              <Link to={item.href}>{item.label}</Link>
             </li>
           ))}
         </ul>

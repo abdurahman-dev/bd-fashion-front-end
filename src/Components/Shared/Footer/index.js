@@ -41,6 +41,7 @@ const footerInfo = [
     { label: 'About us', href: '/' },
     { label: 'Contact us', href: '/' },
     { label: 'Blog', href: '/' },
+    { label: 'Shopping Card', href: '/shoppingCard' },
     { label: 'Careers', href: '/' },
   ],
   [

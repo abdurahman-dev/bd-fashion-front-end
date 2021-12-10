@@ -66,6 +66,3 @@ const FeaturedProducts = () => {
 
 export default FeaturedProducts;
 
-// const productFilter = (catId) => {
-//   return ;
-// };
