@@ -10,7 +10,7 @@ export const AddCategory = (info, func) => {
           type: CatConstants.ADD_CATEGORY_REQUEST,
         });
         const res = await axios.post('/createCategory', info);
-        
+        console.log(res.data);
         dispatch({
           type: CatConstants.ADD_CATEGORY_SUCCESS,
           payload: {
@@ -125,7 +125,6 @@ export const getCategory = () => {
       dispatch({
         type:CatConstants.GET_ALL_CATEGORY_SUBCATEGORY_REQUEST
       })
-
       const res= await axios.get('/categories')
       const {categories,success}=res.data
       dispatch({

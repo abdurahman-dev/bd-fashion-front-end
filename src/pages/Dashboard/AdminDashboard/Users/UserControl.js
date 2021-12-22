@@ -33,7 +33,7 @@ const UserControl = () => {
     setVisible(false);
     requiredSuccessHandle('User Deleted Successfully');
   };
-  const itemView = (user) => {
+  const handleUpdateUser = (user) => {
     setVisible(true);
     setIsDelete(false);
     setViewUser(user);
@@ -66,7 +66,7 @@ const handleUseInfoChange=(info,id)=>{
       <div>
         <MyTable
           data={totalUser}
-          itemView={itemView}
+          handleUpdate={handleUpdateUser}
           handleDelete={handleDelete}
         />
       </div>

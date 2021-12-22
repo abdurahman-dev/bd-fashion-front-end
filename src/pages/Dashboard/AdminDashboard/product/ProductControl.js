@@ -190,7 +190,7 @@ const ProductControl = () => {
           />
         </div>
       <div className="mt-4">
-        <MyTable handleProductUpdate={handleProductUpdate} data={products} products handleDelete={handleDelete} />
+        <MyTable handleUpdate={handleProductUpdate} data={products} products handleDelete={handleDelete} />
       </div>
       <Modal
         show={isVisible}

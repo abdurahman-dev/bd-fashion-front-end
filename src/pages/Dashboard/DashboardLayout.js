@@ -12,6 +12,7 @@ const DashboardLayout = ({ children }) => {
   const authLogin = useSelector((state) => state.authLoginReducer);
 
   useEffect(()=>{
+    
     if(authLogin.user.role==='admin'){
       dispatch(getInitialData())
     }
