@@ -1,4 +1,4 @@
-import React, {useState } from 'react';
+import React, { useState } from 'react';
 import Slider from 'react-slick';
 import { BsTagFill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
@@ -9,9 +9,9 @@ import { addToCard } from '../../Redux/Actions/addToCard.action';
 import { Toaster } from 'react-hot-toast';
 import { requiredErrorHandle } from '../../helper/toastNotification';
 
-export default function SingleProductInfo({ pd,quickView}) {
+export default function SingleProductInfo({ pd, quickView }) {
   const [qntCount, setQntCount] = useState(1);
-  const dispatch=useDispatch()
+  const dispatch = useDispatch();
   const {
     productName,
     _id,
@@ -45,19 +45,20 @@ export default function SingleProductInfo({ pd,quickView}) {
   const discountPrice =
     Number(discount) > 0 && ((Number(discount) / 100) * productPrice).toFixed();
 
-  const handleQnty = (action,pd) => {
+  const handleQnty = (action, pd) => {
     if (action === 'sub') {
       if (qntCount <= 1) {
-        
         return requiredErrorHandle('Quantity must be greater then one');
       } else {
         setQntCount(qntCount - 1);
-      //   dispatch(addToCard(pd,qntCount-1))
+        //   dispatch(addToCard(pd,qntCount-1))
       }
     }
     if (action === 'add') {
       if (qntCount >= productStock) {
-        return requiredErrorHandle(`There are ${productStock} product in Stock`);;
+        return requiredErrorHandle(
+          `There are ${productStock} product in Stock`
+        );
       } else {
         setQntCount(qntCount + 1);
         // dispatch(addToCard(pd,qntCount+1))
@@ -65,15 +66,20 @@ export default function SingleProductInfo({ pd,quickView}) {
     }
   };
   const handleProductAddToCard = (pd) => {
-      dispatch(addToCard(pd,qntCount))
+    dispatch(addToCard(pd, qntCount));
   };
   return (
     <div className="grid gap-4 grid-cols-1 md:grid-cols-2">
-       <Toaster/>
+      <Toaster />
       <div className="justify-self-center" style={{ width: '94%' }}>
         <Slider {...settings}>
           {productImage?.map((item, i) => (
-            <img src={item?.url} alt="" className="rounded img-height" />
+            <img
+              key={i}
+              src={item?.url}
+              alt=""
+              className="rounded img-height"
+            />
           ))}
         </Slider>
         <div className="h-20 "></div>
@@ -82,7 +88,7 @@ export default function SingleProductInfo({ pd,quickView}) {
         <div>
           <span
             className={` px-4  rounded text-center text-white ${
-              Number(productStock) ? 'bg-green-500' : 'bg-red-500'
+              Number(productStock) ? 'bg-blue-400' : 'bg-red-500'
             }`}
           >
             {Number(productStock) ? ' In Stock ' : 'Stock Out'}
@@ -93,26 +99,33 @@ export default function SingleProductInfo({ pd,quickView}) {
         </div>
         <div className="flex items-center">
           <div>
-            <ReactStars count={5} value={ratings} size={24} color2={'#ffd700'}  edit={false}/>
-           
+            <ReactStars
+              count={5}
+              value={ratings}
+              size={24}
+              color2={'#ffd700'}
+              edit={false}
+            />
           </div>
           <div className="ml-8">
-            {
-              quickView===true ? <p className={`${
-                reviews?.length ? 'text-yellow-500' : 'text-red-500'
-              }`}>
-                  {reviews?.length} reviews
-              </p> : <a
-              href={'#PdReviews'}
-
-              className={`${
-                reviews?.length ? 'text-yellow-500' : 'text-red-500'
-              }`}
-            >
-              {reviews?.length} reviews
-            </a>
-            }
-            
+            {quickView === true ? (
+              <p
+                className={`${
+                  reviews?.length ? 'text-yellow-500' : 'text-red-500'
+                }`}
+              >
+                {reviews?.length} reviews
+              </p>
+            ) : (
+              <a
+                href={'#PdReviews'}
+                className={`${
+                  reviews?.length ? 'text-yellow-500' : 'text-red-500'
+                }`}
+              >
+                {reviews?.length} reviews
+              </a>
+            )}
           </div>
         </div>
         <div>
@@ -140,48 +153,54 @@ export default function SingleProductInfo({ pd,quickView}) {
         </div>
         <div className=" w-2/5 my-4">
           Quantity
-          
           <div className="flex  justify-between items-center p-2 ">
-                          <div>
-                            <button
-                           onClick={() => handleQnty('add',_id)}
-                              className="w-5 h-10 rounded-full bg-blue-600 text-gray-50"
-                            >
-                              +
-                            </button>
-                            <input type="text" readOnly value={qntCount} className="w-12 text-center mx-2 rounded-md outline-none ring-0  border-0 focus:ring-0 "/>
-                            <button
-                             onClick={() => handleQnty('sub',_id)}
-                              className="w-5 h-10 rounded-full bg-blue-600 text-gray-50"
-                            >
-                              -
-                            </button>
-                          </div>
-                        </div>
+            <div>
+              <button
+                onClick={() => handleQnty('add', _id)}
+                className="w-5 h-10 rounded-full bg-blue-400 text-gray-50"
+              >
+                +
+              </button>
+              <input
+                type="text"
+                readOnly
+                value={qntCount}
+                className="w-12 text-center mx-2 rounded-md outline-none ring-0  border-0 focus:ring-0 "
+              />
+              <button
+                onClick={() => handleQnty('sub', _id)}
+                className="w-5 h-10 rounded-full bg-blue-400 text-gray-50"
+              >
+                -
+              </button>
+            </div>
+          </div>
         </div>
 
         {Number(productStock) ? (
           <div className="flex text-white py-4">
             <button
               onClick={() => handleProductAddToCard(_id)}
-              className="py-2 px-4 bg-yellow-600 rounded"
+              className="py-2 px-4 bg-blue-400 rounded"
             >
-              add to card
+              Add To Card
             </button>
-            <button className="py-2 px-4 bg-green-600 rounded ml-4">
+            <Link to='/shoppingCard'
+              onClick={() => handleProductAddToCard(_id)}
+              className="py-2 px-4 bg-green-600 rounded ml-4 text-white"
+            >
               Buy Now
-            </button>
+            </Link>
           </div>
         ) : (
           ''
         )}
-         <div className="">
-            <span>
-              {' '}
-              <strong>Description</strong> : {productDescription}
-            </span>
-          </div>
-        
+        <div className="">
+          <span>
+            {' '}
+            <strong>Description</strong> : {productDescription}
+          </span>
+        </div>
       </div>
     </div>
   );

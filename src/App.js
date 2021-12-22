@@ -12,7 +12,6 @@ import { getProducts } from './Redux/Actions/product.action';
 import ProductControl from './pages/Dashboard/AdminDashboard/product/ProductControl';
 import OrderControl from './pages/Dashboard/AdminDashboard/OrderControl';
 import UserDashboard from './pages/Dashboard/UserDashboard/UserDashboard';
-import HomeAdmin from './pages/Dashboard/AdminDashboard/HomeAdmin';
 import ProductOrder from './pages/Dashboard/UserDashboard/ProductOrder';
 import UserProfile from './pages/Dashboard/UserDashboard/UserProfile';
 import PrivateRoute from './untils/PrivateRoute/PrivateRoute';
@@ -23,6 +22,7 @@ import UserControl from './pages/Dashboard/AdminDashboard/Users/UserControl';
 import { updateAddToCard } from './Redux/Actions/addToCard.action';
 import { Toaster } from 'react-hot-toast';
 import ShoppingCard from './pages/ShoppingCard';
+import HomeAdmin from './pages/Dashboard/AdminDashboard/AdminDashboard/HomeAdmin';
 function App() {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.authReducer);
@@ -48,14 +48,10 @@ function App() {
           <Route path="/login" component={LogIn} />
           <Route path="/dashboard" component={DashboardLayout} />
           <Route path="/shoppingCard" component={ShoppingCard} />
-          
+          {/* <PrivateRoute path="/shoppingCard" component={ShoppingCard} /> */}
           {/** admin dashboard*/}
-          <PrivateRoute path="/adminDashboard">
-            <HomeAdmin/>
-          </PrivateRoute>
-          <PrivateRoute path="/categoryControl">
-            <CategoryControl/>
-          </PrivateRoute>
+          <PrivateRoute path="/adminDashboard" component={HomeAdmin} />
+          <PrivateRoute path="/categoryControl" component={CategoryControl} />
           <PrivateRoute path="/manageProducts">
             <ProductControl/>
           </PrivateRoute>

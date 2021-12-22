@@ -1,6 +1,13 @@
-
 import axios from '../../helper/axios';
-import { AuthDeleteConstants, AuthLoginConstants, AuthRegisterConstants, AuthUpdateConstants, CLEAR_ERRORS } from './constants';
+import {
+  AuthDeleteConstants,
+  AuthLoginConstants,
+  AuthRegisterConstants,
+  AuthUpdateConstants,
+  AUTH_LOGOUT,
+  AUTH_LOGOUT_COMPLETE,
+  CLEAR_ERRORS,
+} from './constants';
 
 export const getLogged = (info) => {
   return async (dispatch) => {
@@ -14,11 +21,11 @@ export const getLogged = (info) => {
       });
       //token will be remove after 7days
       const date = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
-      document.cookie =`token=${res.data.token || ''};expires=${date}; path=/`;
+      document.cookie = `token=${res.data.token || ''};expires=${date}; path=/`;
       const { token, userInfo } = res.data;
-      localStorage.setItem("token", token);
-      localStorage.setItem("user", JSON.stringify(userInfo));
-     
+      localStorage.setItem('token', token);
+      localStorage.setItem('user', JSON.stringify(userInfo));
+
       dispatch({
         type: AuthLoginConstants.AUTH_LOGIN_SUCCESS,
         payload: res.data.userInfo,
@@ -39,8 +46,8 @@ export const userUpdate = (info) => {
         type: AuthUpdateConstants.AUTH_UPDATE_REQUEST,
       });
       const res = await axios.put('/profile/me/update', info);
-      const {  user } = res.data;
-      localStorage.setItem("user", JSON.stringify(user));
+      const { user } = res.data;
+      localStorage.setItem('user', JSON.stringify(user));
 
       dispatch({
         type: AuthUpdateConstants.AUTH_UPDATE_SUCCESS,
@@ -60,9 +67,10 @@ export const userUpdate = (info) => {
 
 export const isLoggedIn = () => {
   return (dispatch) => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem('token');
     if (token) {
-      const user = JSON.parse(localStorage.getItem("user"));
+      const user = JSON.parse(localStorage.getItem('user'));
+
       dispatch({
         type: AuthLoginConstants.AUTH_LOGIN_SUCCESS,
         payload: {
@@ -74,7 +82,7 @@ export const isLoggedIn = () => {
       dispatch({
         type: AuthLoginConstants.AUTH_LOGIN_FAIL,
         payload: {
-          err: "need to logIn",
+          err: 'need to logIn',
         },
       });
     }
@@ -87,18 +95,17 @@ export const userRegister = (info) => {
       dispatch({
         type: AuthRegisterConstants.AUTH_REGISTER_REQUEST,
       });
-      console.log(info);
       const { data } = await axios.post('/register', {
         ...info,
       });
-       //token will be remove after 7days
-       const date = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
-       document.cookie =`token=${data.token || ''};expires=${date}; path=/`;
-       const { token, userInfo } = data;
-       localStorage.setItem("token", token);
-       localStorage.setItem("user", JSON.stringify(userInfo));
-      
-      console.log(data);
+      //token will be remove after 7days
+      const date = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
+      document.cookie = `token=${data.token || ''};expires=${date}; path=/`;
+      const { token, userInfo } = data;
+      localStorage.setItem('token', token);
+      localStorage.setItem('user', JSON.stringify(userInfo));
+
+      console.log(data.userInfo);
       dispatch({
         type: AuthRegisterConstants.AUTH_REGISTER_SUCCESS,
         payload: data.userInfo,
@@ -117,28 +124,51 @@ export const userRegister = (info) => {
   };
 };
 
-export const authDelete=(info)=>{
-  return async dispatch=>{
-    try{
-      dispatch({
-        type:AuthDeleteConstants.AUTH_DELETE_REQUEST
-      })
-      const res=await axios.delete(`/admin/user/delete/${info}`)
-      dispatch({
-        type:AuthDeleteConstants.AUTH_DELETE_SUCCESS,
-        payload:res.data.user
-      })
-    }catch(err){
+export const authLogOut = () => {
+  return async (dispatch) => {
+    try {
+      const res = await axios.get('/logout');
+      if (res.status === 200) {
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
         dispatch({
-          type:AuthDeleteConstants.AUTH_DELETE_FAIL,
-          payload:err
-        })
+          type: AUTH_LOGOUT,
+          payload: {
+            success: res.data.success,
+          },
+        });
         dispatch({
-          type:CLEAR_ERRORS
-        })
+          type: AUTH_LOGOUT_COMPLETE,
+        });
+      }
+    } catch (err) {
+      console.log(err);
     }
-  }
-}
+  };
+};
+
+export const authDelete = (info) => {
+  return async (dispatch) => {
+    try {
+      dispatch({
+        type: AuthDeleteConstants.AUTH_DELETE_REQUEST,
+      });
+      const res = await axios.delete(`/admin/user/delete/${info}`);
+      dispatch({
+        type: AuthDeleteConstants.AUTH_DELETE_SUCCESS,
+        payload: res.data.user,
+      });
+    } catch (err) {
+      dispatch({
+        type: AuthDeleteConstants.AUTH_DELETE_FAIL,
+        payload: err,
+      });
+      dispatch({
+        type: CLEAR_ERRORS,
+      });
+    }
+  };
+};
 
 export const clearErrors = () => async (dispatch) => {
   dispatch({

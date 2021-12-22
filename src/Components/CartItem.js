@@ -146,7 +146,7 @@ const CartItem = ({ show, handleClose, ...props }) => {
                 View Cart
                 </Link>
                 <Link
-                  to="/"
+                  to="/shoppingCard"
                   className="px-4 py-1 bg-blue-50 rounded-md text-blue-700"
                 >
                   CheckOut

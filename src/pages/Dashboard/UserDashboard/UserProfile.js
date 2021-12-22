@@ -19,7 +19,6 @@ const UserProfile = () => {
     userCityState: '',
     userZipCode: '',
   });
-
   const dispatch = useDispatch();
 
   const { user } = useSelector((state) => state.authLoginReducer);

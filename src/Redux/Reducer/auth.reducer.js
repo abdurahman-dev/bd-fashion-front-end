@@ -1,8 +1,9 @@
-import { AuthLoginConstants, AuthRegisterConstants, AuthUpdateConstants, CLEAR_ERRORS } from '../Actions/constants';
+import { AuthLoginConstants, AuthRegisterConstants, AuthUpdateConstants, AUTH_LOGOUT, AUTH_LOGOUT_COMPLETE, CLEAR_ERRORS } from '../Actions/constants';
 
 const initialData = {
   loading: false,
   isAuthenticated: false,
+  logoutSuccess: false,
   user: {},
   error: null,
 };
@@ -50,6 +51,24 @@ export const authLoginReducer = (state = initialData, action) => {
         user: action.payload
       };
       return newState;
+    }
+    case AUTH_LOGOUT:{
+      const newState={
+        ...state,
+        loading: false,
+        logoutSuccess:action.payload.success,
+        isAuthenticated: false,
+      }
+      return newState
+    }
+    case AUTH_LOGOUT_COMPLETE:{
+      const newState={
+        ...state,
+        loading: false,
+        logoutSuccess: false,
+        isAuthenticated: false,
+      }
+      return newState
     }
     
     //error handling
@@ -102,6 +121,7 @@ export const authRegisterReducer = (state = initialData, action) => {
       };
       return newState;
     }
+    
     case AuthRegisterConstants.AUTH_CLEAR_ERRORS: {
       const newState = {
         ...state,

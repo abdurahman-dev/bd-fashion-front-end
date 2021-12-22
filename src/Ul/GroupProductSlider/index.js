@@ -4,14 +4,15 @@ import NoProduct from '../../Components/NoProduct';
 
 import ProductCard from '../ProductCard';
 
-const ProductSlider = ({ groupTitle, products, slidesToShow}) => {
+const ProductSlider = ({ groupTitle, products, slidesToShow }) => {
   const settings = {
     dots: false,
-    infinite: true,
     autoplay: true,
     speed: 500,
     arrows: true,
-    slidesToShow: products.length < slidesToShow ? products.length : slidesToShow,
+    infinite: true,
+    slidesToShow:
+      products.length < slidesToShow ? products.length : slidesToShow,
     slidesToScroll: 2,
     responsive: [
       {
@@ -19,7 +20,6 @@ const ProductSlider = ({ groupTitle, products, slidesToShow}) => {
         settings: {
           slidesToShow: slidesToShow - 1,
           slidesToScroll: 2,
-          infinite: true,
         },
       },
       {
@@ -48,20 +48,19 @@ const ProductSlider = ({ groupTitle, products, slidesToShow}) => {
           </div>
         </div>
       )}
-      {
-        products.length>0 ? <div className="" style={{ width: '94%', margin: '0 auto' }}>
-        <Slider {...settings}>
-          {products.map((product, i) => (
-            <ProductCard product={product} key={i}/>
-          ))}
-        </Slider>
-      </div> : 
-       <NoProduct/>
-      }
+      {products.length > 0 ? (
+        <div className="" style={{ width: '94%', margin: '0 auto' }}>
+          <Slider {...settings}>
+            {products.map((product, i) => (
+              <ProductCard product={product} key={i} />
+            ))}
+          </Slider>
+        </div>
+      ) : (
+        <NoProduct />
+      )}
     </div>
   );
 };
 
 export default ProductSlider;
-
-

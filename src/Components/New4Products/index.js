@@ -13,7 +13,7 @@ const New4Products = () => {
           <p className="text-2xl font-semibold  mb-2">New Products</p>
           {newProduct &&
             newProduct.map((item, i) => (
-              <Link to={`/product/${item._id}`}>
+              <Link key={Math.random()} to={`/product/${item._id}`}>
                 <div className="flex gap-2 border-t py-1 text-black">
                   <div>
                     <img

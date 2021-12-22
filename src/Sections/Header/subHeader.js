@@ -8,7 +8,7 @@ const SubHeader = () => {
     <div className="py-10 md:py-20 ">
       <div className="container mx-auto grid gap-4 xl:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 ">
         <div className="self-center row-span-2">
-          <h2 className="text-6xl font-semibold">Get your Fashion style</h2>
+          <h2 className="text-4xl md:text-6xl font-semibold">Get your Fashion style</h2>
           <p className="pt-5 text-lg mb-2">
             You’ll always be in fashion with our collection of clothing
           </p>

@@ -30,7 +30,7 @@ const DashboardLayout = ({ children }) => {
           style={{ flex: 1 }}
           className={`h-full ${sidebar && 'toggleSidebar'}`}
         >
-          <div className="bg-gray-500 flex justify-between items-center px-12 h-16">
+          <div className="bg-blue-400 flex justify-between items-center px-12 h-16">
             <div>
               <button onClick={() => setSidebar(!sidebar)}>
                 <BsJustifyLeft style={{ color: '#fff', fontSize: '2rem' }} />
@@ -45,7 +45,7 @@ const DashboardLayout = ({ children }) => {
           </div>
           <div
             className="overflow-y-auto w-full p-12 "
-            style={{ height: '91%' }}
+            style={{ height: '90%' }}
           >
             {children}
           </div>

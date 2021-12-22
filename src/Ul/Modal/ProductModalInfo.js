@@ -1,9 +1,8 @@
 import React, {  useState } from 'react';
 import Axios from 'axios';
-import { Image } from 'cloudinary-react';
 import { Spinner } from 'react-bootstrap';
 
-const AddProductModalInfo = ({ productInfo, addProduct }) => {
+const AddProductModalInfo = ({ productInfo, addProduct,isProductUpdate}) => {
   const [imgUploadSuccess, setImgUploadSuccess] = useState(false);
   const {
     setVisible,
@@ -20,18 +19,6 @@ const AddProductModalInfo = ({ productInfo, addProduct }) => {
     subcategory,
   } = productInfo;
 
-  // const state = useSelector((state) => state.addProductReducer);
-
-  // useEffect(() => {
-  //   if (state.error) {
-  //     const errorMessage = state.error.response.data.error;
-  //     const msg = errorMessage.split(',');
-  //     toast.error(msg[0], {
-  //       duration: 4000,
-  //       position: 'top-right',
-  //     });
-  //   }
-  // }, [state.error]);
 
   const handleProductImage = async (e) => {
     setImgUploadSuccess(true);
@@ -96,7 +83,7 @@ const AddProductModalInfo = ({ productInfo, addProduct }) => {
             <input
               type="number"
               min="1"
-              value={productPriceDiscount}
+              defaultValue={productPriceDiscount}
               onChange={(e) => setProductPriceDiscount(e.target.value)}
               className="mt-2 border-2 border-gray-700 w-4/5  h-10 rounded-md px-2  focus:outline-none focus:ring focus:ring-gray-500 focus:ring-opacity-50 focus:border-gray-400"
             />
@@ -110,7 +97,7 @@ const AddProductModalInfo = ({ productInfo, addProduct }) => {
             </label>{' '}
             <br />
             <select
-            value={productCategory}
+            defaultValue={productCategory}
               onChange={(e) => setProductCategory(e.target.value)}
               className="mt-2 border-2 border-gray-700 w-4/5 rounded-md px-2  focus:outline-none focus:ring focus:ring-gray-500 focus:ring-opacity-50 focus:border-gray-400"
             >
@@ -128,7 +115,7 @@ const AddProductModalInfo = ({ productInfo, addProduct }) => {
             </label>{' '}
             <br />
             <select
-              value={productSubcategory}
+              defaultValue={productSubcategory}
               onChange={(e) => setProductSubcategory(e.target.value)}
               className="mt-2 border-2 border-gray-700 w-4/5 rounded-md px-2  focus:outline-none focus:ring focus:ring-gray-500 focus:ring-opacity-50 focus:border-gray-400"
             >
@@ -171,20 +158,20 @@ const AddProductModalInfo = ({ productInfo, addProduct }) => {
             Product Images<span className="text-red-600"> *</span>
           </label>{' '}
           <br />
-          <input
+          {!isProductUpdate &&  <input
             type="file"
             onChange={handleProductImage}
             className="mt-2 border-2 border-gray-700 w-4/5 md:w-2/5 h-10 rounded-md px-2  focus:outline-none focus:ring focus:ring-gray-500 focus:ring-opacity-50 focus:border-gray-400"
-          />
+          />}
+         
         </div>
 
         {productImg && (
           <div className="flex mt-2 flex-wrap">
-            {productImg.map((img, i) => (
-              <Image
+            {productImg.map((item, i) => (
+              <img alt='product pic'
                 key={i}
-                cloudName="dpqv2divs"
-                publicId={img}
+                src={isProductUpdate?item.url:item}
                 className="rounded-full w-16 h-16 mr-2"
               />
             ))}

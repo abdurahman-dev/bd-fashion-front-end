@@ -5,13 +5,13 @@ import {
   deleteSingleProduct,
   newProductAdded,
 } from '../../../../Redux/Actions/product.action';
-import toast, { Toaster } from 'react-hot-toast';
 import AddProductModalInfo from '../../../../Ul/Modal/ProductModalInfo';
 import { Modal } from 'react-bootstrap';
-import { requiredErrorHandle } from '../../../../helper/toastNotification';
+import { requiredErrorHandle, requiredSuccessHandle } from '../../../../helper/toastNotification';
 import MyTable from '../../../../Ul/TableList/Table';
 import ConformDelete from '../../../../Ul/ConformDelete';
 import { searchProductHandle } from '../../../../Components/ProductsShow/productFilterHelper';
+import axiosInstance from '../../../../helper/axios';
 
 const ProductControl = () => {
   const [productName, setProductName] = useState('');
@@ -23,13 +23,14 @@ const ProductControl = () => {
   const [productStock, setProductStock] = useState(0);
   const [productPriceDiscount, setProductPriceDiscount] = useState(0);
   const [productImg, setProductImg] = useState([]);
+  const [productDltId, setProductDltId] = useState('');
 
   const [products, setProducts] = useState([]);
   const [category, setCategory] = useState([]);
   const [subcategory, setSubcategory] = useState([]);
+  const [isProductUpdate, setIsProductUpdate] = useState(false);
   const [isDelete, setIsDelete] = useState(false);
   const [isVisible, setVisible] = useState(false);
-  const [productDltId, setProductDltId] = useState('');
   const dispatch = useDispatch();
 
   const productInfo = {
@@ -55,7 +56,6 @@ const ProductControl = () => {
     category,
     subcategory,
   };
-
   const initialState = useSelector((state) => state.adminInitialData);
   useEffect(() => {
     if (initialState) {
@@ -64,8 +64,7 @@ const ProductControl = () => {
       setSubcategory(initialState.subcategories);
     }
   }, [initialState]);
-
-  //add product function
+ 
   const addProduct = () => {
     if (productName === '') {
       return requiredErrorHandle('Product Name Required');
@@ -98,9 +97,26 @@ const ProductControl = () => {
       productPrice,
       productStock,
       productImg,
-    };
-
-    dispatch(newProductAdded(productInfo));
+    }; 
+    if(isProductUpdate){
+      //update product
+      const updateProduct=async()=>{
+        try{
+          const res=await axiosInstance.post(`/admin/product/${productDltId}`,productInfo)
+         
+          if(res.status ===200){
+            setProducts(res.data.products.reverse())
+          }
+        }catch(err){
+          console.log(err);
+          return requiredErrorHandle(err.message)
+        }
+      }
+      updateProduct()
+    }else{
+       //add product function
+      dispatch(newProductAdded(productInfo));
+    }
     setVisible(false);
     setProductName('');
     setProductSellerName('');
@@ -108,41 +124,61 @@ const ProductControl = () => {
     setProductCategory('');
     setProductPrice('');
     setProductImg([]);
-    toast.success('Successfully created!', {
-      duration: 4000,
-      position: 'top-right',
-    });
+    requiredSuccessHandle(`${isProductUpdate ? 'Updated Successfully' : 'Successfully created!'}`)
   };
   const handleDelete = (id) => {
     setVisible(true);
     setIsDelete(true);
     setProductDltId(id);
   };
-
+  //after conformDelete button
   const conformDlt = async () => {
     dispatch(deleteSingleProduct(productDltId));
     setVisible(false);
   };
-
+  const handleProductUpdate = (pd) => {
+    setVisible(true);
+    setIsDelete(false);
+    setIsProductUpdate(true)
+    setProductName(pd.productName)
+    setProductSellerName(pd.productSellerName)
+    setProductDescription(pd.productDescription)
+    setProductCategory(pd.productCategory)
+    setProductSubcategory(pd.productSubCategory)
+    setProductPrice(pd.productPrice)
+    setProductStock(pd.productStock)
+    setProductPriceDiscount(pd.productPriceDiscount)
+    setProductImg(pd.productImage)
+    setProductDltId(pd._id)
+  };
+  const handleAddProduct=()=>{
+    setVisible(true);
+    setIsDelete(false);
+    setIsProductUpdate(false)
+    setProductName('')
+    setProductSellerName('')
+    setProductDescription('')
+    setProductCategory('')
+    setProductSubcategory('')
+    setProductPrice('')
+    setProductStock('')
+    setProductPriceDiscount('')
+    setProductImg([])
+    setProductDltId('')
+  }
   return (
     <DashboardLayout>
-      <Toaster />
-      <div className="bg-gray-400 h-16 flex justify-between items-center px-4 rounded-md">
-        <h2 className="text-3xl font-semibold">Products</h2>
+      <div className="bg-blue-300 h-16 flex justify-between items-center px-4 rounded-md">
+        <h2 className="text-3xl font-semibold text-white">Products</h2>
         <button
           className="bg-white px-4 py-2 rounded-2xl"
-          onClick={() => {
-            setVisible(true);
-            setIsDelete(false);
-          }}
+          onClick={handleAddProduct}
         >
           {' '}
           <h4 className="font-medium">Add Product</h4>{' '}
         </button>
       </div>
-      <div className="flex">
-          
-      </div>
+      <div className="flex"></div>
       <div className=" h-10 md:w-1/6 md:h-10 mb-4 ml-auto mt-4">
           <input
             type="text"
@@ -150,11 +186,11 @@ const ProductControl = () => {
               setProducts(searchProductHandle(e.target.value, initialState.products));
             }}
             placeholder="Search Product"
-            className="bg-gray-50 w-full h-full px-2 ring-2 ring-gray-500 ring-opacity-50 rounded-md outline-none focus:shadow-lg"
+            className="bg-gray-50 w-full h-full px-2 border-blue-500 ring-2 ring-blue-500 ring-opacity-50 rounded-md outline-none focus:shadow-lg"
           />
         </div>
       <div className="mt-4">
-        <MyTable data={products} products handleDelete={handleDelete} />
+        <MyTable handleProductUpdate={handleProductUpdate} data={products} products handleDelete={handleDelete} />
       </div>
       <Modal
         show={isVisible}
@@ -172,7 +208,7 @@ const ProductControl = () => {
           <>
             <Modal.Header closeButton>
               <h2 className="text-2xl md:text-4xl font-bold text-gray-700">
-                Add Product
+              {isProductUpdate ? 'Update Product' : 'Add Product'}  
               </h2>
             </Modal.Header>
 
@@ -181,6 +217,7 @@ const ProductControl = () => {
               <AddProductModalInfo
                 productInfo={productInfo}
                 addProduct={addProduct}
+                isProductUpdate={isProductUpdate}
               />
             </Modal.Body>
           </>

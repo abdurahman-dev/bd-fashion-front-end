@@ -5,6 +5,9 @@ export const AuthLoginConstants = {
   AUTH_CLEAR_ERRORS: ' AUTH_CLEAR_ERRORS',
 };
 
+export const AUTH_LOGOUT='AUTH_LOGOUT'
+export const AUTH_LOGOUT_COMPLETE='AUTH_LOGOUT_COMPLETE'
+
 export const AuthDeleteConstants = {
   AUTH_DELETE_REQUEST: ' AUTH_DELETE_REQUEST',
   AUTH_DELETE_SUCCESS: ' AUTH_DELETE_SUCCESS',
@@ -57,6 +60,7 @@ export const ReviewConstants = {
 export const OrdersConstants = {
   ORDERS_REQUEST: ' ORDERS_REQUEST',
   ORDERS_SUCCESS: 'ORDERS_SUCCESS',
+  ORDERS_COMPLETED: 'ORDERS_COMPLETED',
   ORDERS_FAIL: 'ORDERS_FAIL',
 };
 export const CatConstants = {

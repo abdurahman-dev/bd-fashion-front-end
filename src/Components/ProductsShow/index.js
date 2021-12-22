@@ -19,7 +19,7 @@ const ProductsShow = () => {
 
   const [allProduct, setAllProduct] = useState();
   const [product, setProduct] = useState([]);
-  const [val, setVal] = useState({ min: 500, max: 2500 });
+  const [val, setVal] = useState({ min: 0, max: 2500 });
   const [category, setCategory] = useState([]);
   const [catFilter, setCatFilter] = useState('');
 
@@ -49,7 +49,7 @@ const ProductsShow = () => {
     setCatFilter('')
     setProduct(allProduct);
     setVal({
-      min: 500,
+      min: 0,
       max: 2500,
     });
   };

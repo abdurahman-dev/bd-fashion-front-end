@@ -1,7 +1,7 @@
 import React from 'react';
 import { BsFillTrashFill, BsPencilSquare } from 'react-icons/bs';
 
-const MyTable = ({ data, products,handleDelete }) => {
+const MyTable = ({ data, products,handleDelete,handleProductUpdate }) => {
    
   return (
     <table className="table table-striped table-hover">
@@ -42,7 +42,7 @@ const MyTable = ({ data, products,handleDelete }) => {
 
                 <td>
                   <div className="flex gap-3">
-                    <button>
+                    <button onClick={()=>handleProductUpdate(item)}>
                       <BsPencilSquare className="text-green-700 text-3xl" />
                     </button>
                     <button onClick={()=>handleDelete(item._id)}>
