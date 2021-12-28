@@ -105,6 +105,8 @@ export default function ChooseCategories() {
 
 
 const totalProducts=(catName,pds)=>{
-  const pd=pds.filter((item) => item.productCategory === catName)
+  const pd=pds.filter((item) => item.productCategory === catName ||
+  item.productSubCategory === catName)
+  
  return pd.length 
 }

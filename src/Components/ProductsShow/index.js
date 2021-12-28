@@ -42,7 +42,7 @@ const ProductsShow = () => {
   }, [categories]);
 
   const handlePdOfCategory = (title) => {
-    const pd = allProduct.filter((item) => item.productCategory === title);
+    const pd = allProduct.filter((item) => item.productCategory === title || item.productSubCategory === title);
     return pd.length;
   };
   const handleFilterClear = () => {

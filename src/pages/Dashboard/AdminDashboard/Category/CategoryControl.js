@@ -8,7 +8,6 @@ import {
 } from '../../../../Redux/Actions/Admin/category.action';
 import { getInitialData } from '../../../../Redux/Actions/Admin/initialData.action';
 import DashboardLayout from '../../DashboardLayout';
-import loadingImg from '../../../../images/load-loading.gif';
 import Axios from 'axios';
 import {
   requiredErrorHandle,
@@ -91,9 +90,8 @@ const CategoryControl = () => {
     if (title === 'Update Subcategory') {
       dispatch(updateCategory(name, 'subcategoryUpdate', updateId));
     }
-    if (cat.success) {
-      dispatch(getInitialData());
-    }
+
+    dispatch(getInitialData());
     //update subcategory
     setVisible(false);
     setName('');
@@ -203,7 +201,7 @@ const CatModalInfo = ({
     setImgUploadSuccess(true);
     const form = new FormData();
     form.append('file', e.target.files[0]);
-    form.append('upload_preset', 'hv0yt2b8');
+    form.append('upload_preset', 'hlwpqtcq');
     const result = await Axios.post(
       'https://api.cloudinary.com/v1_1/dpqv2divs/image/upload',
       form
@@ -253,11 +251,7 @@ const CatModalInfo = ({
             />
           )}
 
-          <div>
-            {imgUploadSuccess && (
-              <img src={loadingImg} className="w-28 h-28" alt="loading img" />
-            )}
-          </div>
+          <div>{imgUploadSuccess && <p>Please wait...</p>}</div>
         </>
       )}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4 mb-4 ml-2 md:ml-0">

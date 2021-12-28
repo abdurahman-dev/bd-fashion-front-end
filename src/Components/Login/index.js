@@ -11,6 +11,7 @@ import {
 import Navbar from '../Shared/Navbar';
 import Loader from '../../images/2a6dae53616869.593a85ce553c4.gif'
 
+
 const LogIn = () => {
   let history = useHistory();
   let location = useLocation();
@@ -140,7 +141,7 @@ const LogIn = () => {
                         onClick={() => setReg(!reg)}
                         className="pb-4 text-blue-600"
                       >
-                        {reg ? 'Login' : 'New Customer?'}
+                        {reg ? <span>Already have an account? Login</span> : <span>Create Account?</span> }
                       </button>
                       <button
                         className="block w-full text-white bg-blue-600 px-12 py-2 rounded-md"

@@ -23,7 +23,7 @@ function SunglassesBanner() {
             />
             <h4 className='text-sm md:text-4xl capitalize md:mb-2'>acetate frame sunglasses</h4>
             <p className='md:text-4xl font-extrabold mb-2 md:mb-4'>$ 50.00 Only</p>
-            <Link to='/product/61b81d6b0931592d28835286' className='px-2 py-1 md:px-4 md:py-2 bg-blue-500 md:text-2xl text-white rounded'>Shop Now</Link>
+            <Link to='/product/61cad57642c43032ccd56210' className='px-2 py-1 md:px-4 md:py-2 bg-blue-500 md:text-2xl text-white rounded'>Shop Now</Link>
           </div>
         </div>
       </div>

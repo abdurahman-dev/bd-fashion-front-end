@@ -21,7 +21,7 @@ const CollectionsGrid = () => {
 
 
   const totalProduct = (catId) => {
-    return pdState.products.filter((item, i) => item.productCategory === catId);
+    return pdState.products.filter((item, i) => item.productCategory === catId || item.productSubCategory===catId);
   };
   return (
     <div className="py-12">

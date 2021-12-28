@@ -10,7 +10,6 @@ export const AddCategory = (info, func) => {
           type: CatConstants.ADD_CATEGORY_REQUEST,
         });
         const res = await axios.post('/createCategory', info);
-        console.log(res.data);
         dispatch({
           type: CatConstants.ADD_CATEGORY_SUCCESS,
           payload: {

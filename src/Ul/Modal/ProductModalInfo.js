@@ -14,7 +14,7 @@ const AddProductModalInfo = ({ productInfo, addProduct,isProductUpdate}) => {
     productPriceDiscount,setProductPriceDiscount,
     productDescription, setProductDescription,
     productCategory,setProductCategory,
-    productSubcategory,setProductSubcategory,
+    productSubCategory,setProductSubCategory,
     category,
     subcategory,
   } = productInfo;
@@ -98,14 +98,14 @@ const AddProductModalInfo = ({ productInfo, addProduct,isProductUpdate}) => {
             <br />
             <select
             defaultValue={productCategory}
-              onChange={(e) => setProductCategory(e.target.value)}
+              onChange={(e) => {
+                setProductCategory(e.target.value)
+              }}
               className="mt-2 border-2 border-gray-700 w-4/5 rounded-md px-2  focus:outline-none focus:ring focus:ring-gray-500 focus:ring-opacity-50 focus:border-gray-400"
             >
                <option >Select Category</option>
               {
-                category.map((item,i)=> {
-                  return ( <option key={i} value={item.name}>{item.name}</option>)
-                })
+                category.map((item,i)=> <option key={i} value={item.name}>{item.name}</option>)
               }
             </select>
           </div>
@@ -115,8 +115,11 @@ const AddProductModalInfo = ({ productInfo, addProduct,isProductUpdate}) => {
             </label>{' '}
             <br />
             <select
-              defaultValue={productSubcategory}
-              onChange={(e) => setProductSubcategory(e.target.value)}
+              defaultValue={productSubCategory}
+              onChange={(e) => {
+                setProductSubCategory(e.target.value)
+                console.log(productSubCategory);
+              }}
               className="mt-2 border-2 border-gray-700 w-4/5 rounded-md px-2  focus:outline-none focus:ring focus:ring-gray-500 focus:ring-opacity-50 focus:border-gray-400"
             >
               <option >Select Subcategory</option>
@@ -178,7 +181,7 @@ const AddProductModalInfo = ({ productInfo, addProduct,isProductUpdate}) => {
             <div>
               {imgUploadSuccess && (
                <Spinner animation="border" role="status">
-               <span className="visually-hidden">Loading...</span>
+               <span className="visually-hidden">Please Wait...</span>
              </Spinner>
               )}
             </div>

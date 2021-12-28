@@ -16,11 +16,29 @@ const TopCollection = () => {
       setShowProduct(statePd.products);
     }
     if (title === 'Men') {
-      setShowProduct(statePd.products.filter((item)=> item.productSubCategory === 'Men'))
+      setShowProduct(
+        statePd.products.filter(
+          (item) =>
+            item.productSubCategory === 'Men' || item.productCategory === 'Men'
+        )
+      );
     }
-    if(title === 'Women')setShowProduct(statePd.products.filter((item)=> item.productSubCategory === 'Women'))
-    if(title === 'Children')setShowProduct(statePd.products.filter((item)=> item.productSubCategory === 'Children'))
-
+    if (title === 'Women')
+      setShowProduct(
+        statePd.products.filter(
+          (item) =>
+            item.productSubCategory === 'Women' ||
+            item.productCategory === 'Women'
+        )
+      );
+    if (title === 'Accessories')
+      setShowProduct(
+        statePd.products.filter(
+          (item) =>
+            item.productSubCategory === 'Accessories' ||
+            item.productCategory === 'Accessories'
+        )
+      );
   };
 
   return (
@@ -40,21 +58,27 @@ const TopCollection = () => {
           <span className="mr-2 hover:underline" onClick={() => catPd('Women')}>
             Women
           </span>{' '}
-          <span className="mr-2 hover:underline" onClick={() => catPd('Children')}>
+          <span
+            className="mr-2 hover:underline"
+            onClick={() => catPd('Accessories')}
+          >
             {' '}
-            Children
+            Accessories
           </span>
         </div>
-        <ProductSlider products={showProduct} groupTitle={''} slidesToShow={4} />
-        
-        <div className='flex justify-center mt-4'>
-        <Link to="/shop/products " >
+        <ProductSlider
+          products={showProduct}
+          groupTitle={''}
+          slidesToShow={4}
+        />
+
+        <div className="flex justify-center mt-4">
+          <Link to="/shop/products ">
             <button className="transition  duration-500 ease-in-out bg-blue-500 border-2 text-gray-50 border-blue-500 px-9 py-1  hover:bg-gray-200 hover:border-gray-500 hover:text-gray-900 uppercase transform hover:translate-y-1 hover:scale-110 ">
               See Shop
             </button>
           </Link>
         </div>
-        
       </div>
     </div>
   );

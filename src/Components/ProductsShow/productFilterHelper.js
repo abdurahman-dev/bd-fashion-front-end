@@ -18,7 +18,7 @@ export const productShowCase = (pd) => {
 };
 //filter category function
 export const handleFilterByCategory = (pds, cat) => {
-  return pds.filter((item) => item.productCategory === cat.name);
+  return pds.filter((item) => item.productCategory === cat.name || item.productSubCategory ===cat.name);
 };
 //sort filter function
 export const handleShortChange = (e, products) => {

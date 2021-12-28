@@ -3,19 +3,19 @@ import img2 from '../../images/slide-image-2_1728x.jpg';
 // import img3 from '../../images/slide-image-3_1728x.jpg';
 const mainBanners = [
   {
-    title: 'Denim Perfect',
-    subtitle: 'fashion guide',
+    title: 'Neck Ribbed Dress',
+    subtitle: 'fashion',
     description: 'You’ll always be in fashion with our collection of clothing',
-    href: '/product/61b18436bc4c69965bf5b2c3',
+    href: '/product/61cace6542c43032ccd55c6d',
     buttonTitle: 'Shop Now',
     img: img1,
     textSide: 'left',
   },
   {
-    title: 'Denim Perfect2',
-    subtitle: 'fashion guide2',
+    title: 'Icon Bomber Jacket',
+    subtitle: 'fashion',
     description: 'You’ll always be in fashion with our collection of clothing',
-    href: '/product/61b18436bc4c69965bf5b2c3',
+    href: '/product/61cacf6142c43032ccd55ce7',
     img: img2,
     textSide: 'left',
     buttonTitle: 'Shop Now',

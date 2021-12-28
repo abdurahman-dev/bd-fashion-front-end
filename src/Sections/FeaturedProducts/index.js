@@ -4,19 +4,20 @@ import ProductSlider from '../../Ul/GroupProductSlider';
 
 const FeaturedProducts = () => {
   const [pds, setPds] = useState([]);
-  const pdState=useSelector(state=>state.productReducer)
+  const pdState = useSelector((state) => state.productReducer);
 
   useEffect(() => {
     setPds(pdState.products);
   }, [pdState.products]);
 
-
-  const handleClick = (id) => {
-    if (id === 'All') {
+  const handleClick = (title) => {
+    if (title === 'All') {
       setPds(pdState.products);
     } else {
-      const pt = pdState.products.filter((item, i) => item.productCategory === id);
-      setPds(pt); 
+      const pt = pdState.products.filter(
+        (item, i) => item.productCategory === title || item.productSubCategory===title
+      );
+      setPds(pt);
     }
   };
 
@@ -25,9 +26,7 @@ const FeaturedProducts = () => {
       <div className="container mx-auto">
         <div className="flex md:flex-row justify-between items-center text-justify sm:text-center py-8 flex-col">
           <div>
-            <h2 className="text-4xl font-medium ">
-              Featured Products
-            </h2>
+            <h2 className="text-4xl font-medium ">Featured Products</h2>
           </div>
           <div className="">
             <button
@@ -40,7 +39,7 @@ const FeaturedProducts = () => {
               onClick={() => handleClick('Clothes')}
               className="mr-4 uppercase hover:underline"
             >
-              Clothing
+              Clothes
             </button>
             <button
               onClick={() => handleClick('Shoes')}
@@ -49,10 +48,10 @@ const FeaturedProducts = () => {
               Shoes
             </button>
             <button
-              onClick={() => handleClick('Electrics')}
+              onClick={() => handleClick('Beauty')}
               className="mr-4 uppercase hover:underline"
             >
-              Electrics
+              Beauty
             </button>
           </div>
         </div>
@@ -65,4 +64,3 @@ const FeaturedProducts = () => {
 };
 
 export default FeaturedProducts;
-
