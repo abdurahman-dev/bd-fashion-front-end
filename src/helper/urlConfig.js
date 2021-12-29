@@ -1,1 +1,1 @@
-export const axiosApi='http://localhost:4000/api/v1'
+export const axiosApi='https://bd-fashion.herokuapp.com/api/v1'
