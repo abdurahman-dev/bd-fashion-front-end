@@ -1,10 +1,13 @@
 import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import axios from '../../../helper/axios';
+// import axios from '../../../helper/axios';
+
 import DashboardLayout from '../DashboardLayout';
 import Table from 'react-bootstrap/Table';
 import OrderViewModal from './OrderViewModal';
+import { axiosApi } from '../../../helper/urlConfig';
+const axios = require('axios');
 
 const UserDashboard = () => {
   const [orders, setOrders] = useState([]);
@@ -12,7 +15,15 @@ const UserDashboard = () => {
   const [viewOrder, setViewOrders] = useState({});
   useEffect(() => {
     async function fetchData() {
-      const order = await axios.get('/orders/me');
+      const token = localStorage.getItem('token');
+      const order = await axios.get('/orders/me', {
+        baseURL: axiosApi,
+        headers: {
+          'X-Custom-Header': 'foobar',
+          Authorization: token || '',
+        },
+        withCredentials: true,
+      });
       setOrders(order.data.order.reverse());
     }
     fetchData();
