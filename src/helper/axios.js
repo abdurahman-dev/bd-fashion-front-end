@@ -4,7 +4,7 @@ import { axiosApi } from './urlConfig';
 const token=document.cookie
 const axiosInstance = axios.create({
   baseURL: axiosApi,
-  // timeout: 60000,
+  timeout: 60000,
   headers: {
     Authorization: token||'',
   },
