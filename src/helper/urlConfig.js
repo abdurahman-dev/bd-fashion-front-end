@@ -1,1 +1,1 @@
-export const axiosApi='https://frozen-earth-80725.herokuapp.com/api/v1'
+export const axiosApi='https://bd-fashion.herokuapp.com/api/v1'
